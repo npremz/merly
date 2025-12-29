@@ -12,6 +12,10 @@ export default defineConfig({
   site: 'https://example.com', // TODO: Remplacer par l'URL du site
   output: 'static',
   adapter: node({ mode: 'standalone' }),
+  server: {
+    host: '0.0.0.0',
+    port: 4321
+  },
   integrations: [react(), markdoc(), keystatic(), sitemap()],
   prefetch: true,
   compressHTML: true,
