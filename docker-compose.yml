@@ -1,0 +1,9 @@
+services:
+  horde:
+    build: .
+    container_name: horde
+    restart: unless-stopped
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - RESEND_API_KEY=${RESEND_API_KEY}
