@@ -3,6 +3,6 @@ services:
     build: . 
     restart: unless-stopped
     ports:
-      - "${PORT}:4321"
+      - "${PORT}:${PORT}"
     environment:
       - RESEND_API_KEY=${RESEND_API_KEY}
