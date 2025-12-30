@@ -19,4 +19,7 @@ export default defineConfig({
   integrations: [react(), markdoc(), keystatic(), sitemap()],
   prefetch: true,
   compressHTML: true,
+  build: {
+    inlineStylesheets: 'always',
+  },
 });
