@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-AstroBoiler is an Astro 5 static site with Keystatic CMS for content management. It uses React for interactive components and Markdoc for content with embedded components.
+AstroBoiler is an Astro 5 static site with Keystatic CMS for content management. It uses Markdoc for content with embedded components. React est requis par Keystatic CMS, mais pour les composants interactifs personnalisés, préférer Preact (plus léger, ~3KB vs ~40KB).
 
 ## Development Commands
 
@@ -17,8 +17,9 @@ npm run preview  # Preview production build locally
 ## Architecture
 
 **Integrations:**
-- **React** - Interactive client-side components
-- **Markdoc** - Markdown content with embedded React components
+- **React** - Requis par Keystatic CMS uniquement
+- **Preact** - À utiliser pour les composants interactifs personnalisés (plus léger que React)
+- **Markdoc** - Markdown content avec composants embarqués
 - **Keystatic** - Local file-based CMS with admin UI at `/keystatic`
 - **Sitemap** - Auto-generated at `/sitemap-index.xml` on build
 
@@ -54,7 +55,7 @@ import { ViewTransitions } from 'astro:transitions';
 
 **TypeScript:**
 - Strict mode enabled via `astro/tsconfigs/strict`
-- React JSX configured for use in .astro files
+- JSX configuré pour Preact/React dans les fichiers .astro
 
 ## Optimisation Images
 
@@ -201,7 +202,7 @@ import monImage from '../assets/image.jpg';
 ## Key Directories
 
 - `src/pages/` - File-based routing (each file becomes a route)
-- `src/components/` - Reusable Astro/React components (SEO.astro, etc.)
+- `src/components/` - Reusable Astro/Preact components (SEO.astro, etc.)
 - `src/content/posts/` - Keystatic posts collection
 - `src/content/pages/` - Keystatic pages collection
 - `src/content/settings/` - Keystatic singletons (site settings)
