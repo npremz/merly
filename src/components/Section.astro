@@ -1,0 +1,16 @@
+---
+interface Props {
+  class?: string;
+  noPadding?: boolean;
+}
+
+const { class: className = '', noPadding = false } = Astro.props;
+---
+
+<section class:list={[
+  'px-(--spacing-container)',
+  !noPadding && 'pt-(--spacing-section)',
+  className
+]}>
+  <slot />
+</section>

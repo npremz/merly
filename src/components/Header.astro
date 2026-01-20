@@ -1,0 +1,44 @@
+---
+// Header component - Mobile first
+---
+
+<header class="flex items-center justify-between py-6 px-(--spacing-container) relative bg-(--color-bg-section)">
+  <a href="/" class="flex items-center" aria-label="Accueil">
+    <img src="/logoMerly.svg" alt="Merly" class="block w-[75px] h-auto" width="100" height="30" />
+  </a>
+
+  <button
+    class="burger flex flex-col justify-center gap-[3px] w-[30px] h-[10px] p-0 bg-transparent border-none cursor-pointer focus-visible:outline-2 focus-visible:outline-current focus-visible:outline-offset-4"
+    type="button"
+    aria-label="Ouvrir le menu"
+    aria-expanded="false"
+    aria-controls="mobile-nav"
+  >
+    <span class="burger-line block w-full h-px bg-current transition-all duration-300"></span>
+    <span class="burger-line block w-full h-px bg-current transition-all duration-300"></span>
+    <span class="burger-line block w-full h-px bg-current transition-all duration-300"></span>
+  </button>
+</header>
+
+<style>
+  /* États du burger - nécessite CSS pour aria-expanded */
+  .burger[aria-expanded="true"] .burger-line:nth-child(1) {
+    transform: translateY(4px) rotate(45deg);
+  }
+  .burger[aria-expanded="true"] .burger-line:nth-child(2) {
+    opacity: 0;
+  }
+  .burger[aria-expanded="true"] .burger-line:nth-child(3) {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+</style>
+
+<script>
+  const burger = document.querySelector('.burger');
+
+  burger?.addEventListener('click', () => {
+    const isExpanded = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!isExpanded));
+    burger.setAttribute('aria-label', isExpanded ? 'Ouvrir le menu' : 'Fermer le menu');
+  });
+</script>

@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+import blog01 from '../assets/images/blog01.jpg';
+import blog02 from '../assets/images/blog02.jpg';
+import blog03 from '../assets/images/blog03.jpg';
+import blog04 from '../assets/images/blog04.jpg';
+
+const articles = [
+  { date: "15.01.26", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.", image: blog01 },
+  { date: "10.01.26", excerpt: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.", image: blog02 },
+  { date: "05.01.26", excerpt: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.", image: blog03 },
+  { date: "28.12.25", excerpt: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.", image: blog04 },
+];
+---
+
+<section class="section !pr-0">
+  <h2 class="heading-lg mb-8">What's new?</h2>
+
+  <div class="articles-scroll flex gap-6 overflow-x-auto pr-6 pb-4">
+    {articles.map((article) => (
+      <article class="shrink-0 w-[280px]">
+        <Image src={article.image} alt="Blog article" class="img-cover h-[400px] mb-5" />
+        <time class="block mb-8">{article.date}</time>
+        <p class="text-body">{article.excerpt}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .articles-scroll {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .articles-scroll::-webkit-scrollbar {
+    height: 4px;
+  }
+  .articles-scroll::-webkit-scrollbar-track {
+    background: #e8e8e8;
+    border-radius: 2px;
+  }
+  .articles-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+  }
+</style>

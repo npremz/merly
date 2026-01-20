@@ -1,0 +1,49 @@
+---
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About us", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Blog", href: "/blog" },
+];
+
+const contactInfo = [
+  "hello@merly.com",
+  "Our why",
+  "WhatsApp",
+];
+---
+
+<footer class="bg-(--color-bg-section) pt-25">
+  <div class="section-primary">
+    <p class="heading-xl mb-6">Start your inscription now to start your freedom</p>
+    <a href="/register" class="btn-white">Start registration now</a>
+  </div>
+
+  <div class="section-dark pt-16 pb-10">
+    <img src="/logoMerly.svg" alt="Merly" class="w-[115px] h-auto mb-12 brightness-0 invert" />
+
+    <div class="flex justify-between mb-25">
+      <ul class="list-none p-0 m-0">
+        {navLinks.map((link) => (
+          <li class="mb-3">
+            <a href={link.href} class="text-white no-underline transition-opacity hover:opacity-70">{link.label}</a>
+          </li>
+        ))}
+      </ul>
+
+      <ul class="list-none p-0 m-0 mr-2">
+        {contactInfo.map((info) => (
+          <li class="mb-3">{info}</li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="flex justify-between border-dashed-dark pt-10">
+      <p class="m-0">© 2026 Merly</p>
+      <div class="flex flex-col mr-2 gap-5">
+        <a href="/privacy" class="no-underline">Privacy Policy</a>
+        <p class="m-0">By Horde Agence</p>
+      </div>
+    </div>
+  </div>
+</footer>

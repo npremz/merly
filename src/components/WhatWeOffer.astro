@@ -1,0 +1,21 @@
+---
+const items = [
+  { value: "35%", description: "Commissions on profit" },
+  { value: "0", description: "Registration with low deposit fees" },
+  { value: "5000€", description: "Minimum first time deposit" },
+];
+---
+
+<section class="section">
+  <h2 class="heading-lg mb-8">What we offer</h2>
+
+  <div class="card flex flex-col">
+    {items.map((item, i) => (
+      <article class:list={["flex flex-col pt-8 pb-10", i < items.length - 1 && "border-dashed-light"]}>
+        <span class="badge-number mb-3">/ {String(i + 1).padStart(2, '0')}</span>
+        <span class="font-machina text-[4rem] leading-none mb-4">{item.value}</span>
+        <p class="heading-md">{item.description}</p>
+      </article>
+    ))}
+  </div>
+</section>

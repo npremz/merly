@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+/* Fonts */
+@font-face {
+  font-family: 'PP Neue Machina';
+  src: url('../assets/fonts/PPNeueMachina-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('../assets/fonts/PPNeueMontreal-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Custom Tailwind theme */
+@theme {
+  /* Fonts */
+  --font-sans: 'PP Neue Montreal', sans-serif;
+  --font-machina: 'PP Neue Machina', sans-serif;
+  --font-montreal: 'PP Neue Montreal', sans-serif;
+
+  /* Spacing */
+  --spacing-section: 5rem;
+  --spacing-container: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-md: 1rem;
+  --spacing-sm: 0.5rem;
+
+  /* Colors */
+  --color-primary: #5550F6;
+  --color-primary-hover: rgba(85, 80, 246, 0.05);
+  --color-primary-dark: #1a1654;
+  --color-success: #22c55e;
+  --color-bg: #F0F1F4;
+  --color-bg-card: #F0F1F4;
+  --color-bg-section: #ffffff;
+  --color-bg-placeholder: #d1d5db;
+  --color-bg-dark: #16161D;
+  --color-border: #d1d5db;
+  --color-border-dark: #45454A;
+  --color-text: #16161D;
+  --color-text-muted: #BDBBBB;
+  --color-text-light: #9ca3af;
+  --color-text-placeholder: #9ca3af;
+}
+
+/* Custom base styles */
+@layer base {
+  body {
+    @apply bg-(--color-bg) text-(--color-text) leading-relaxed;
+    font-family: var(--font-montreal);
+  }
+}
+
+/* ============================================
+   DESIGN SYSTEM - Components
+   ============================================ */
+
+@layer components {
+  /* -------- Layout -------- */
+  .section {
+    @apply pt-(--spacing-section) px-(--spacing-container) bg-(--color-bg-section);
+  }
+
+  .section-dark {
+    @apply py-10 px-(--spacing-container) bg-(--color-bg-dark) text-white;
+  }
+
+  .section-primary {
+    @apply py-10 px-(--spacing-container) bg-(--color-primary) text-white;
+  }
+
+  /* -------- Typography -------- */
+  .heading-xl {
+    @apply font-machina text-4xl leading-tight;
+  }
+
+  .heading-lg {
+    @apply font-machina text-2xl leading-tight;
+  }
+
+  .heading-md {
+    @apply font-machina text-[1.25rem] leading-none;
+  }
+
+  .heading-sm {
+    @apply font-machina text-[1rem] leading-none;
+  }
+
+  .text-body {
+    @apply leading-normal;
+  }
+
+  .text-body-lg {
+    @apply font-machina text-[1.5rem] leading-[1.33];
+  }
+
+  .color-muted {
+    @apply text-(--color-text-muted);
+  }
+
+  .color-placeholder {
+    @apply text-(--color-text-placeholder);
+  }
+
+  /* -------- Buttons -------- */
+  .btn {
+    @apply block w-full py-4 px-(--spacing-lg) rounded-[5px] text-center no-underline transition-colors;
+  }
+
+  .btn-outline {
+    @apply block w-full py-4 px-(--spacing-lg) rounded-[5px] text-center no-underline transition-colors bg-transparent text-(--color-primary) border border-(--color-primary) hover:bg-(--color-primary-hover);
+  }
+
+  .btn-solid {
+    @apply block w-full py-4 px-(--spacing-lg) rounded-[5px] text-center no-underline transition-colors bg-(--color-primary) text-white border border-(--color-primary) hover:opacity-90;
+  }
+
+  .btn-white {
+    @apply block w-full py-4 px-(--spacing-lg) rounded-[5px] text-center no-underline transition-colors bg-white text-(--color-primary) hover:bg-(--color-bg);
+  }
+
+  .btn-icon {
+    @apply flex items-center justify-between;
+  }
+
+  /* -------- Cards -------- */
+  .card {
+    @apply bg-(--color-bg-card) rounded-[5px] p-6;
+  }
+
+  .card-bordered {
+    @apply bg-(--color-bg-section) border border-(--color-border) rounded-[5px] p-6;
+  }
+
+  /* -------- Form Inputs -------- */
+  .input {
+    @apply py-4 px-8 rounded-[5px] text-base bg-(--color-bg-card) border-none focus:outline-2 focus:outline-(--color-primary) focus:-outline-offset-2;
+  }
+
+  .input-dashed {
+    @apply py-4 px-8 rounded-[5px] text-base bg-(--color-bg-card) border-none focus:outline-2 focus:outline-(--color-primary) focus:-outline-offset-2;
+    background-image: linear-gradient(to right, var(--color-border) 50%, transparent 50%);
+    background-position: bottom;
+    background-size: 12px 1px;
+    background-repeat: repeat-x;
+  }
+
+  /* -------- Borders & Separators -------- */
+  .border-dashed-light {
+    @apply border-b border-dashed border-(--color-border);
+  }
+
+  .border-dashed-dark {
+    @apply border-t border-dashed border-(--color-border-dark);
+  }
+
+  .separator {
+    @apply pb-(--spacing-lg) mb-(--spacing-lg) border-b border-dashed border-(--color-border);
+  }
+
+  /* -------- Images -------- */
+  .img-cover {
+    @apply w-full object-cover rounded-[5px];
+  }
+
+  .img-placeholder {
+    @apply w-full bg-(--color-bg-card) rounded-[5px] flex items-center justify-center text-(--color-text-placeholder);
+  }
+
+  /* -------- Number Badge -------- */
+  .badge-number {
+    @apply block text-[1rem] leading-none mb-(--spacing-md);
+  }
+}

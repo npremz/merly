@@ -1,0 +1,81 @@
+---
+// Simulate Investment section
+---
+
+<section class="section flex flex-col gap-5">
+  <h2 class="heading-lg mb-8">Simulate your investment</h2>
+
+  <div class="card flex flex-col gap-5 mb-4">
+    <div class="flex flex-col gap-5">
+      <div class="flex flex-col gap-2.5">
+        <span class="text-body">Simulated investment</span>
+        <span class="heading-md text-xl">1 000 €</span>
+      </div>
+      <div class="flex flex-col gap-2.5">
+        <span class="text-body">Total return</span>
+        <span class="heading-md text-xl">9,05 %</span>
+      </div>
+    </div>
+
+    <div class="img-placeholder h-[200px]">
+      <span>Chart</span>
+    </div>
+  </div>
+
+  <div class="card-bordered py-8 px-5 flex flex-col gap-8">
+    <div class="flex flex-col gap-5">
+      <label for="amount" class="font-medium">How much would you like to invest ? (€)</label>
+      <input type="number" id="amount" value="10000" min="50" step="50" class="input-dashed" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <label for="months" class="font-medium">What investment duration are you aiming for ? (Months)</label>
+      <div class="relative flex items-center w-full">
+        <input type="number" id="months" value="12" min="1" max="60" class="input-dashed number-input w-full" />
+        <div class="absolute right-2.5 flex flex-col gap-0.5">
+          <button type="button" class="number-btn up flex items-center justify-center w-6 h-[18px] bg-transparent border-none cursor-pointer color-muted p-0 hover:text-(--color-primary)" aria-label="Increase">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          </button>
+          <button type="button" class="number-btn down flex items-center justify-center w-6 h-[18px] bg-transparent border-none cursor-pointer color-muted p-0 hover:text-(--color-primary)" aria-label="Decrease">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide native number input spinners */
+  .number-input {
+    -moz-appearance: textfield;
+  }
+  .number-input::-webkit-outer-spin-button,
+  .number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+</style>
+
+<script>
+  const monthsInput = document.getElementById('months') as HTMLInputElement;
+  const upBtn = document.querySelector('.number-btn.up');
+  const downBtn = document.querySelector('.number-btn.down');
+
+  upBtn?.addEventListener('click', () => {
+    const max = parseInt(monthsInput.max) || 60;
+    if (parseInt(monthsInput.value) < max) {
+      monthsInput.value = String(parseInt(monthsInput.value) + 1);
+    }
+  });
+
+  downBtn?.addEventListener('click', () => {
+    const min = parseInt(monthsInput.min) || 1;
+    if (parseInt(monthsInput.value) > min) {
+      monthsInput.value = String(parseInt(monthsInput.value) - 1);
+    }
+  });
+</script>
