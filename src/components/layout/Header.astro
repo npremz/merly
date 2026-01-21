@@ -8,7 +8,7 @@ const navLinks = [
 ];
 ---
 
-<header class="flex items-center justify-between py-6 px-(--spacing-container) relative bg-(--color-bg-section)">
+<header class="header flex items-center justify-between py-6 px-(--spacing-container) lg:px-0 fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-(--max-width-site) z-50 transition-transform duration-300 before:content-[''] before:absolute before:inset-0 before:left-1/2 before:-translate-x-1/2 before:w-screen before:-z-10 before:bg-(--color-bg-section)">
   <!-- Logo -->
   <a href="/" class="flex items-center" aria-label="Accueil">
     <img src="/logoMerly.svg" alt="Merly" class="block w-[75px] md:w-[100px] h-auto" width="100" height="30" />
@@ -42,6 +42,11 @@ const navLinks = [
 </header>
 
 <style>
+  /* Header hide on scroll down */
+  .header.header-hidden {
+    transform: translateY(-100%);
+  }
+
   /* États du burger - nécessite CSS pour aria-expanded */
   .burger[aria-expanded="true"] .burger-line:nth-child(1) {
     transform: translateY(4px) rotate(45deg);
@@ -56,10 +61,28 @@ const navLinks = [
 
 <script>
   const burger = document.querySelector('.burger');
+  const header = document.querySelector('.header');
 
   burger?.addEventListener('click', () => {
     const isExpanded = burger.getAttribute('aria-expanded') === 'true';
     burger.setAttribute('aria-expanded', String(!isExpanded));
     burger.setAttribute('aria-label', isExpanded ? 'Ouvrir le menu' : 'Fermer le menu');
   });
+
+  // Hide header on scroll down, show on scroll up
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling down & past threshold
+      header?.classList.add('header-hidden');
+    } else {
+      // Scrolling up
+      header?.classList.remove('header-hidden');
+    }
+
+    lastScrollY = currentScrollY;
+  }, { passive: true });
 </script>

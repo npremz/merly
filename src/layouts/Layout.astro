@@ -20,9 +20,27 @@ const { title = 'Merly' } = Astro.props;
   </head>
   <body class="bg-(--color-bg) font-sans leading-normal">
     <Header />
-    <main>
+    <main class="pt-20">
       <slot />
     </main>
     <Footer />
+
+    <script>
+      import Lenis from 'lenis';
+
+      // Only enable smooth scroll on desktop (md breakpoint = 1024px)
+      const isMobile = window.matchMedia('(max-width: 1023px)').matches;
+
+      if (!isMobile) {
+        const lenis = new Lenis();
+
+        function raf(time: number) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+      }
+    </script>
   </body>
 </html>
