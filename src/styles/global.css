@@ -19,17 +19,31 @@
 
 /* Custom Tailwind theme */
 @theme {
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1512px;
+  --breakpoint-xl: 1920px;
+  --breakpoint-2xl: 2560px;
+
   /* Fonts */
   --font-sans: 'PP Neue Montreal', sans-serif;
   --font-machina: 'PP Neue Machina', sans-serif;
   --font-montreal: 'PP Neue Montreal', sans-serif;
 
-  /* Spacing */
-  --spacing-section: 5rem;
+  /* Spacing (mobile-first) */
+  --spacing-section: 6.25rem;
   --spacing-container: 1.5rem;
   --spacing-lg: 2rem;
   --spacing-md: 1rem;
   --spacing-sm: 0.5rem;
+
+  /* Typography sizes (mobile-first) */
+  --text-heading-xl: 2.25rem;
+  --text-heading-lg: 1.5rem;
+  --text-heading-md: 1.25rem;
+  --text-heading-sm: 1rem;
+  --text-body-lg: 1.5rem;
 
   /* Colors */
   --color-primary: #5550F6;
@@ -47,6 +61,41 @@
   --color-text-muted: #BDBBBB;
   --color-text-light: #9ca3af;
   --color-text-placeholder: #9ca3af;
+}
+
+/* Responsive sizes for md+ (1024px - tablet landscape / desktop) */
+@media (width >= theme(--breakpoint-md)) {
+  :root {
+    /* Spacing - desktop */
+    --spacing-section: 12.5rem;
+    --spacing-container: 2.25rem;
+    --spacing-lg: 2.5rem;
+    --spacing-md: 1.5rem;
+    --spacing-sm: 0.75rem;
+
+    /* Typography - desktop */
+    --text-heading-xl: 3.5rem;
+    --text-heading-lg: 1.625rem;
+    --text-heading-sm: 1.25rem;
+    --text-body-lg: 2.25rem;
+  }
+}
+
+@media (width >= theme(--breakpoint-lg)) {
+  :root {
+    /* Spacing - desktop */
+    --spacing-section: 15.625rem;
+    --spacing-container: 4rem;
+    --spacing-lg: 3.25rem;
+    --spacing-md: 1.5rem;
+    --spacing-sm: 0.75rem;
+
+    /* Typography - desktop */
+    --text-heading-xl: 5rem;
+    --text-heading-lg: 2.25rem;
+    --text-heading-md: 1.75rem;
+    --text-body-lg: 3.25rem;
+  }
 }
 
 /* Custom base styles */
@@ -72,24 +121,28 @@
   }
 
   .section-primary {
-    @apply py-10 px-(--spacing-container) bg-(--color-primary) text-white;
+    @apply py-10 px-(--spacing-container) bg-(--color-primary) text-white md:py-16 lg:py-25;
   }
 
   /* -------- Typography -------- */
   .heading-xl {
-    @apply font-machina text-4xl leading-tight;
+    @apply font-machina leading-tight;
+    font-size: var(--text-heading-xl);
   }
 
   .heading-lg {
-    @apply font-machina text-2xl leading-tight;
+    @apply font-machina leading-tight;
+    font-size: var(--text-heading-lg);
   }
 
   .heading-md {
-    @apply font-machina text-[1.25rem] leading-none;
+    @apply font-machina leading-none;
+    font-size: var(--text-heading-md);
   }
 
   .heading-sm {
-    @apply font-machina text-[1rem] leading-none;
+    @apply font-machina leading-none;
+    font-size: var(--text-heading-sm);
   }
 
   .text-body {
@@ -97,7 +150,8 @@
   }
 
   .text-body-lg {
-    @apply font-machina text-[1.5rem] leading-[1.33];
+    @apply font-machina leading-[1.33];
+    font-size: var(--text-body-lg);
   }
 
   .color-muted {
@@ -131,7 +185,7 @@
 
   /* -------- Cards -------- */
   .card {
-    @apply bg-(--color-bg-card) rounded-[5px] p-6;
+    @apply bg-(--color-bg-card) rounded-[5px] p-6 md:px-10;
   }
 
   .card-bordered {

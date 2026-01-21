@@ -1,16 +1,15 @@
 ---
 import { Image } from 'astro:assets';
-import heroImage from '../assets/images/hero.jpg';
+import heroImage from '../../assets/images/hero.jpg';
 ---
 
-<section class="section pt-16 pb-[6.25rem] text-left bg-(--color-bg)">
-  <p class="heading-xl color-muted">Welcome to Merly</p>
-  <h1 class="heading-xl font-light max-w-[600px] mb-8">That is your new partner for your financial freedom</h1>
-  <Image src={heroImage} alt="Merly hero" class="img-cover h-[310px] mb-[6.25rem]" loading="eager" />
-  <p class="text-body-lg max-w-[600px] mb-8">
+<section class="section pt-16 md:pt-37.5 pb-(--spacing-section) text-left bg-(--color-bg)">
+  <h1 class="heading-xl font-light leading-[1.2] mb-8 md:mb-16"><span class="color-muted">Welcome to Merly</span>That is your new partner for your financial freedom</h1>
+  <Image src={heroImage} alt="Merly hero" class="img-cover h-[310px] mb-(--spacing-section) md:h-[500px] lg:h-[700px]" loading="eager" />
+  <p class="text-body-lg mb-8">
     Take control of your future with a platform designed to guide and support you on your path to financial freedom. Whether you're starting out or scaling up, we're your trusted partner in the world of trading and more.
   </p>
-  <a href="/about" class="btn-outline btn-icon">
+  <a href="/about" class="btn-outline btn-icon md:w-fit md:flex md:gap-10">
     <span>About us</span>
     <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
      <path d="M7.6416 7.36328L6.92578 7.36426L6.91797 1.83984C6.91765 1.60881 6.6357 1.48832 6.46973 1.6543L0.504883 7.61914L0 7.11816L5.96582 1.15234C6.13124 0.98632 6.00983 0.705733 5.77832 0.706055L0.238281 0.713867L0.237305 0.000976562L7.63086 0L7.6416 7.36328Z" fill="currentColor"/>

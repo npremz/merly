@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import footerBg from '../../assets/images/footer_bg.png';
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About us", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Blog", href: "/blog" },
+];
+
+const contactInfo = [
+  "hello@merly.com",
+  "Our why",
+  "WhatsApp",
+];
+---
+
+<footer class="bg-(--color-bg-section) pt-(--spacing-section)">
+  <div class="section-primary relative overflow-hidden">
+    <Image src={footerBg} alt="" class="hidden md:block absolute right-0 top-0 h-full w-auto object-cover object-left" aria-hidden="true" />
+    <p class="heading-xl md:text-[2.25rem] lg:text-[3.25rem] md:max-w-[520px] lg:max-w-[685px] mb-6 relative z-10">Start your inscription now to start your freedom</p>
+    <a href="/register" class="btn-white md:w-fit relative z-10">Start registration now</a>
+  </div>
+
+  <div class="section-dark pt-16 pb-10 md:pb-16">
+    <div class="md:flex md:items-start md:justify-between">
+      <img src="/logoMerly.svg" alt="Merly" class="w-[115px] h-auto mb-12 brightness-0 invert" />
+      <div class="flex justify-between mb-25 md:gap-16 md:mb-(--spacing-section) lg:mr-16">
+        <ul class="list-none p-0 m-0 w-[94px]">
+          {navLinks.map((link) => (
+            <li class="mb-6">
+              <a href={link.href} class="text-white no-underline transition-opacity hover:opacity-70">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+
+        <ul class="list-none p-0 m-0 mr-2">
+          {contactInfo.map((info) => (
+            <li class="mb-6">{info}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <div class="flex justify-between border-dashed-dark pt-10">
+      <p class="m-0">© 2026 Merly</p>
+      <div class="flex flex-col mr-2 gap-5 md:flex-row md:gap-16 lg:mr-16">
+        <a href="/privacy" class="no-underline">Privacy Policy</a>
+        <p class="m-0">By Horde Agence</p>
+      </div>
+    </div>
+  </div>
+</footer>
