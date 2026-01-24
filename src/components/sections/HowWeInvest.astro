@@ -25,7 +25,14 @@ const items = [
           </div>
           <a href="/register" class="btn-outline mb-(--spacing-lg) md:w-fit md:mb-0">Start registration now</a>
         </div>
-        <Image src={item.image} alt={item.title} class="img-cover h-[310px] md:h-[270px] lg:h-[400px]" />
+        <Image
+          src={item.image}
+          alt={item.title}
+          class="img-cover h-[310px] md:h-[270px] lg:h-[400px]"
+          widths={[300, 400, 500]}
+          sizes="(max-width: 1024px) 100vw, 25vw"
+          loading="lazy"
+        />
       </article>
     ))}
   </div>

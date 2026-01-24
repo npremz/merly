@@ -5,6 +5,12 @@ import blog02 from '../../assets/images/blog02.jpg';
 import blog03 from '../../assets/images/blog03.jpg';
 import blog04 from '../../assets/images/blog04.jpg';
 
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
 const articles = [
   { date: "15.01.26", excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.", image: blog01 },
   { date: "10.01.26", excerpt: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.", image: blog02 },
@@ -13,13 +19,20 @@ const articles = [
 ];
 ---
 
-<section class="section !pr-0 pb-(--spacing-section)">
+<section class:list={["section !pr-0 pb-(--spacing-section)", className]}>
   <h2 class="heading-lg mb-8">What's new?</h2>
 
   <div class="articles-scroll flex gap-6 overflow-x-auto pr-6 pb-4">
     {articles.map((article) => (
       <article class="shrink-0 w-[280px] md:w-[310px]">
-        <Image src={article.image} alt="Blog article" class="img-cover h-[400px] mb-5" />
+        <Image
+          src={article.image}
+          alt="Blog article"
+          class="img-cover h-[400px] mb-5"
+          widths={[280, 400, 500]}
+          sizes="(max-width: 1024px) 280px, 310px"
+          loading="lazy"
+        />
         <time class="block mb-8">{article.date}</time>
         <p class="text-body">{article.excerpt}</p>
       </article>

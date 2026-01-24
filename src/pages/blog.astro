@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import AnimatedBackground from '../components/ui/AnimatedBackground.astro';
+import blog01 from '../assets/images/blog01.jpg';
+import blog02 from '../assets/images/blog02.jpg';
+import blog03 from '../assets/images/blog03.jpg';
+import blog04 from '../assets/images/blog04.jpg';
+import resultImg from '../assets/images/result.jpg';
+
+const blogArticles = [
+  { date: "30.12.23", title: "Performance de Décembre: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: blog01 },
+  { date: "07.01.24", title: "Performance de Janvier: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: blog02 },
+  { date: "14.01.24", title: "Finance Arbitraire: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: blog03 },
+  { date: "22.01.24", title: "Réforme de Wall Street: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: blog04 },
+  { date: "01.02.24", title: "Performance de Février: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: blog01 },
+];
+
+const mensuelArticles = [
+  { date: "30.12.23", title: "Performance de Décembre: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: resultImg, featured: true },
+  { date: "07.01.24", title: "Performance de Janvier: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: resultImg, featured: true },
+  { date: "14.01.24", title: "Performance de Février: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: resultImg, featured: true },
+  { date: "22.01.24", title: "Performance de Mars: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: resultImg, featured: true },
+  { date: "01.02.24", title: "Performance de Décembre: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: resultImg, featured: true },
+];
+---
+
+<Layout title="Blog - Merly">
+  <div class="relative">
+    <AnimatedBackground />
+
+    <!-- Hero Title -->
+    <section class="section section-bg-transparent pt-16 md:pt-32 lg:pt-64 pb-8 md:pb-20 lg:pb-32">
+      <h1 class="heading-xl leading-[1.25]">Explore our various articles about the world of finance</h1>
+    </section>
+  </div>
+
+  <!-- Blog Content -->
+  <div class="bg-(--color-bg-section)">
+    <!-- Blog & News Section -->
+    <section class="section !pr-0 pt-12 md:pt-16 lg:pt-20 pb-12 md:pb-16">
+      <h2 class="heading-lg mb-8 md:mb-10">Blog & News</h2>
+
+      <div class="articles-scroll flex gap-6 overflow-x-auto pr-6 pb-4 lg:grid lg:grid-cols-4 lg:gap-8 lg:overflow-visible lg:pr-0">
+        {blogArticles.map((article) => (
+          <article class="article-card shrink-0 w-[280px] md:w-[304px] lg:w-auto">
+            <a href="#" class="block">
+              <Image
+                src={article.image}
+                alt={article.title}
+                class="img-cover h-[350px] md:h-[400px] mb-4 rounded-[10px]"
+                widths={[280, 350, 400]}
+                sizes="(max-width: 1024px) 280px, 25vw"
+                loading="lazy"
+              />
+              <time class="block text-base text-(--color-text)/70 mb-2">{article.date}</time>
+              <p class="text-body font-bold leading-[1.6]">{article.title}</p>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Mensuel Result Section -->
+    <section class="section !pr-0 pt-12 md:pt-16 pb-(--spacing-section)">
+      <h2 class="heading-lg mb-8 md:mb-10">Mensuel Result</h2>
+
+      <div class="articles-scroll flex gap-6 overflow-x-auto pr-6 pb-4 lg:grid lg:grid-cols-4 lg:gap-8 lg:overflow-visible lg:pr-0">
+        {mensuelArticles.map((article) => (
+          <article class="article-card shrink-0 w-[280px] md:w-[304px] lg:w-auto">
+            <a href="#" class="block">
+              <Image
+                src={article.image}
+                alt={article.title}
+                class="img-cover h-[350px] md:h-[400px] mb-4 rounded-[10px]"
+                widths={[280, 350, 400]}
+                sizes="(max-width: 1024px) 280px, 25vw"
+                loading="lazy"
+              />
+              <time class="block text-base text-(--color-text)/70 mb-2">{article.date}</time>
+              <p class="text-body font-bold leading-[1.6]">{article.title}</p>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .articles-scroll {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .articles-scroll::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .articles-scroll::-webkit-scrollbar-track {
+    background: #e8e8e8;
+    border-radius: 2px;
+  }
+
+  .articles-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+  }
+
+  .article-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+</style>

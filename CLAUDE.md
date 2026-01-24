@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-AstroBoiler is an Astro 5 static site with Keystatic CMS for content management. It uses Markdoc for content with embedded components. React est requis par Keystatic CMS, mais pour les composants interactifs personnalisés, préférer Preact (plus léger, ~3KB vs ~40KB).
+Merly is an Astro 5 static site for an investment fund. Pour les composants interactifs personnalisés, préférer Preact (plus léger, ~3KB vs ~40KB).
 
 ## Development Commands
 
 ```bash
-npm run dev      # Start dev server at localhost:4321
+npm run dev      # Start dev server at localhost:5103
 npm run build    # Build production site to ./dist/
 npm run preview  # Preview production build locally
 ```
@@ -17,10 +17,7 @@ npm run preview  # Preview production build locally
 ## Architecture
 
 **Integrations:**
-- **React** - Requis par Keystatic CMS uniquement
-- **Preact** - À utiliser pour les composants interactifs personnalisés (plus léger que React)
-- **Markdoc** - Markdown content avec composants embarqués
-- **Keystatic** - Local file-based CMS with admin UI at `/keystatic`
+- **Preact** - À utiliser pour les composants interactifs personnalisés (léger)
 - **Sitemap** - Auto-generated at `/sitemap-index.xml` on build
 
 **SEO Technique:**
@@ -42,20 +39,8 @@ import { ViewTransitions } from 'astro:transitions';
 </head>
 ```
 
-**Content System:**
-- Keystatic stores content as local files (no cloud backend)
-- Singletons : `siteSettings`, `navigation`, `footer`
-- Collections : `posts`, `pages`, `testimonials`
-
-**SEO Component (`src/components/SEO.astro`):**
-- Centralized SEO meta tags for all pages
-- Reads defaults from Keystatic `siteSettings` singleton
-- Props override defaults per-page (title, description, ogImage, robots, etc.)
-- Includes Open Graph, Twitter Cards, favicon links, and theme-color
-
 **TypeScript:**
 - Strict mode enabled via `astro/tsconfigs/strict`
-- JSX configuré pour Preact/React dans les fichiers .astro
 
 ## Optimisation Images
 
@@ -173,44 +158,11 @@ import monImage from '../assets/image.jpg';
 - `aria-hidden="true"` sur icônes décoratives
 - Roles landmarks appropriés
 
-## Keystatic Configuration
-
-**Setup :**
-- `keystatic.config.ts` proprement structuré
-- Collections définies (pages, posts, etc.)
-- Singletons pour settings globaux (site info, navigation, footer)
-- Slugs auto-générés et validés
-
-**Champs types obligatoires :**
-- Titre (text)
-- Slug (slug)
-- Description/excerpt (text, multiline)
-- Body (markdoc avec composants custom)
-- Featured image avec alt
-- SEO overrides (title, description, noindex)
-- Date de publication
-- Auteur (relation ou select)
-
-**Content components (blocks) disponibles :**
-- CTA blocks
-- Image avec caption
-- Vidéo embed
-- Citation/Testimonial
-- FAQ accordion
-- Galerie
-
 ## Key Directories
 
 - `src/pages/` - File-based routing (each file becomes a route)
-- `src/components/` - Reusable Astro/Preact components (SEO.astro, etc.)
-- `src/content/posts/` - Keystatic posts collection
-- `src/content/pages/` - Keystatic pages collection
-- `src/content/settings/` - Keystatic singletons (site settings)
+- `src/components/` - Reusable Astro/Preact components
+- `src/layouts/` - Page layouts
+- `src/assets/` - Images and fonts (processed by Astro)
 - `public/` - Static assets served at root
-- `public/images/og/` - Open Graph images (1200x630px)
-- `public/images/posts/` - Images à la une des articles
-- `public/images/pages/` - Images à la une des pages
-- `public/images/content/` - Images dans le contenu Markdoc
-- `public/images/gallery/` - Images des galeries
-- `public/images/testimonials/` - Avatars des témoignages
 - `dist/` - Build output (gitignored)

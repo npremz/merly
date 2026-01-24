@@ -7,7 +7,15 @@ import AnimatedBackground from '../ui/AnimatedBackground.astro';
 <section class="section section-bg-gray pt-16 md:pt-37.5 pb-(--spacing-section) text-left">
   <AnimatedBackground />
   <h1 class="heading-xl font-light leading-[1.2] mb-8 md:mb-16 lg:mb-24"><span class="color-muted">Welcome to Merly</span> That is your new partner for your financial freedom</h1>
-  <Image src={heroImage} alt="Merly hero" class="img-cover h-[310px] mb-(--spacing-section) md:h-[500px] lg:h-[700px]" loading="eager" />
+  <Image
+    src={heroImage}
+    alt="Merly hero"
+    class="img-cover h-[310px] mb-(--spacing-section) md:h-[500px] lg:h-[700px]"
+    widths={[400, 800, 1200, 1512]}
+    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1512px"
+    loading="eager"
+    fetchpriority="high"
+  />
   <p class="text-body-lg mb-8">
     Take control of your future with a platform designed to guide and support you on your path to financial freedom. Whether you're starting out or scaling up, we're your trusted partner in the world of trading and more.
   </p>

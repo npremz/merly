@@ -1,13 +1,15 @@
 ---
 import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = 'Merly' } = Astro.props;
+const { title = 'Merly', description = 'Merly Investment Fund - Forex trading with transparent performance' } = Astro.props;
 ---
 
 <html lang="fr">
@@ -15,12 +17,19 @@ const { title = 'Merly' } = Astro.props;
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Font preload -->
+    <link rel="preload" href="/fonts/PPNeueMachina-Light.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/PPNeueMontreal-Regular.woff2" as="font" type="font/woff2" crossorigin />
+
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body class="bg-(--color-bg) font-sans leading-normal">
     <Header />
-    <main class="pt-20">
+    <main class="pt-16">
       <slot />
     </main>
     <Footer />
@@ -28,19 +37,34 @@ const { title = 'Merly' } = Astro.props;
     <script>
       import Lenis from 'lenis';
 
-      // Only enable smooth scroll on desktop (md breakpoint = 1024px)
-      const isMobile = window.matchMedia('(max-width: 1023px)').matches;
+      let lenis: Lenis | null = null;
 
-      if (!isMobile) {
-        const lenis = new Lenis();
+      function initLenis() {
+        const isMobile = window.matchMedia('(max-width: 1023px)').matches;
 
-        function raf(time: number) {
-          lenis.raf(time);
+        if (!isMobile && !lenis) {
+          lenis = new Lenis();
+
+          function raf(time: number) {
+            lenis?.raf(time);
+            requestAnimationFrame(raf);
+          }
+
           requestAnimationFrame(raf);
         }
-
-        requestAnimationFrame(raf);
       }
+
+      // Scroll to top on page navigation
+      document.addEventListener('astro:page-load', () => {
+        window.scrollTo(0, 0);
+        if (lenis) {
+          lenis.scrollTo(0, { immediate: true });
+        }
+        initLenis();
+      });
+
+      // Initial load
+      initLenis();
     </script>
   </body>
 </html>

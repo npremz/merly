@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AnimatedBackground from '../components/ui/AnimatedBackground.astro';
+---
+
+<Layout title="Contact - Merly">
+  <div class="relative">
+    <AnimatedBackground />
+
+    <!-- Marquee -->
+    <div class="marquee-container overflow-hidden pt-16 md:pt-34 lg:pt-68">
+      <div class="marquee-track">
+        <span class="marquee-text">Let's connect →</span>
+        <span class="marquee-text">Let's connect →</span>
+        <span class="marquee-text">Let's connect →</span>
+        <span class="marquee-text">Let's connect →</span>
+        <span class="marquee-text">Let's connect →</span>
+        <span class="marquee-text">Let's connect →</span>
+        <span class="marquee-text">Let's connect →</span>
+        <span class="marquee-text">Let's connect →</span>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <section class="pb-(--spacing-section) pt-8 md:pt-16 lg:pt-32 px-(--spacing-container) max-w-(--max-width-site) mx-auto lg:px-0">
+      <div class="bg-(--color-bg-section) rounded-[5px] p-8 md:p-16">
+        <h1 class="font-machina text-xl md:text-[26px] lg:text-[28px] leading-[1.35] mb-8 md:mb-12 max-w-[462px]">Need more specific advice for your future investments ?</h1>
+
+        <div class="border-t border-(--color-border) border-dashed mb-8 md:mb-12"></div>
+
+        <form class="contact-form" action="#" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" id="firstName" name="firstName" class="input-dashed px-4 w-full" placeholder="First Name *" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" id="lastName" name="lastName" class="input-dashed px-4 w-full" placeholder="Last Name *" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="tel" id="phone" name="phone" class="input-dashed px-4 w-full" placeholder="Phone *" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="input-dashed px-4 w-full" placeholder="Email *" required>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">Message</label>
+            <textarea id="message" name="message" class="input-dashed px-4 w-full min-h-[150px] resize-y" placeholder="Message *" rows="5" required></textarea>
+          </div>
+
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" name="privacy" class="sr-only peer" required>
+              <span class="checkbox-custom"></span>
+              <span class="text-body">You accept our <a href="/privacy" class="underline text-(--color-primary)">Privacy Policy</a>.</span>
+            </label>
+
+            <button type="submit" class="btn-outline md:w-auto">Transmit</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  /* Marquee */
+  .marquee-container {
+    width: 100%;
+  }
+
+  .marquee-track {
+    display: flex;
+    animation: marquee 20s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-text {
+    font-family: var(--font-machina);
+    font-size: 2.25rem;
+    letter-spacing: -0.025em;
+    padding-right: 2rem;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 1024px) {
+    .marquee-text {
+      font-size: 3.5rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1512px) {
+    .marquee-text {
+      font-size: 5rem;
+      padding-right: 4rem;
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Form styles */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-form {
+      gap: 3rem;
+    }
+
+    .form-row {
+      gap: 3rem;
+    }
+
+    .form-row {
+      flex-direction: row;
+      gap: 3rem;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+
+  /* Custom checkbox */
+  .checkbox-custom {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--color-text);
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .checkbox-custom::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--color-text);
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .peer:checked ~ .checkbox-custom::after {
+    opacity: 1;
+  }
+
+  .peer:focus ~ .checkbox-custom {
+    box-shadow: 0 0 0 2px var(--color-primary);
+  }
+</style>

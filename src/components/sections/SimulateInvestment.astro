@@ -46,13 +46,13 @@ const monthlyReturnRate = 0.0075; // 0.75% monthly return (approx 9% annual)
         <label for="months" class="font-medium">What investment duration are you aiming for ? (Months)</label>
         <div class="relative flex items-center w-full">
           <input type="number" id="months" value="12" min="1" max="60" class="input-dashed number-input w-full" />
-          <div class="absolute right-2.5 flex flex-col gap-0.5">
-            <button type="button" class="number-btn up flex items-center justify-center w-6 h-[18px] bg-transparent border-none cursor-pointer color-muted p-0 hover:text-(--color-primary)" aria-label="Increase">
+          <div class="absolute right-0 flex flex-col">
+            <button type="button" class="number-btn up flex items-center justify-center w-11 h-11 bg-transparent border-none cursor-pointer color-muted p-0 hover:text-(--color-primary)" aria-label="Increase">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="18 15 12 9 6 15"></polyline>
               </svg>
             </button>
-            <button type="button" class="number-btn down flex items-center justify-center w-6 h-[18px] bg-transparent border-none cursor-pointer color-muted p-0 hover:text-(--color-primary)" aria-label="Decrease">
+            <button type="button" class="number-btn down flex items-center justify-center w-11 h-11 bg-transparent border-none cursor-pointer color-muted p-0 hover:text-(--color-primary)" aria-label="Decrease">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
