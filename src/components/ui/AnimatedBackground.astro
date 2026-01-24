@@ -1,0 +1,144 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["animated-bg", className]}>
+  <div class="lines-container">
+    {Array.from({ length: 7 }).map((_, i) => (
+      <div class="line" data-line={i}>
+        <span class="neon neon-1" style={`--delay: ${Math.random() * 8}s; --duration: ${2 + Math.random() * 2}s;`}></span>
+        <span class="neon neon-2" style={`--delay: ${Math.random() * 8}s; --duration: ${2 + Math.random() * 2}s;`}></span>
+        <span class="neon neon-3" style={`--delay: ${Math.random() * 8}s; --duration: ${2 + Math.random() * 2}s;`}></span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .animated-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .lines-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 2rem 0;
+  }
+
+  .line {
+    position: relative;
+    height: 1px;
+    background-color: #D9D9F4;
+    width: 100%;
+  }
+
+  /* Responsive: hide lines based on device */
+  /* Mobile: 4 lines */
+  .line:nth-child(n+5) {
+    display: none;
+  }
+
+  /* Tablet: 6 lines */
+  @media (min-width: 768px) {
+    .line:nth-child(n+5) {
+      display: block;
+    }
+    .line:nth-child(n+7) {
+      display: none;
+    }
+  }
+
+  /* Desktop: 7 lines */
+  @media (min-width: 1024px) {
+    .line:nth-child(n+7) {
+      display: block;
+    }
+  }
+
+  .neon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 3px;
+    background: #5550F6;
+    border-radius: 2px;
+    box-shadow:
+      0 0 4px #5550F6,
+      0 0 8px #5550F6,
+      0 0 12px rgba(85, 80, 246, 0.6);
+    opacity: 0;
+    animation: slide var(--duration, 2.5s) ease-in-out var(--delay, 0s) infinite;
+  }
+
+  /* Different starting positions for variety */
+  .neon-1 {
+    left: -50px;
+  }
+
+  .neon-2 {
+    left: -50px;
+    animation-delay: calc(var(--delay, 0s) + 3s);
+  }
+
+  .neon-3 {
+    right: -50px;
+    animation-name: slide-reverse;
+    animation-delay: calc(var(--delay, 0s) + 5s);
+  }
+
+  @keyframes slide {
+    0% {
+      left: -50px;
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      left: calc(100% + 50px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-reverse {
+    0% {
+      right: -50px;
+      left: auto;
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      right: calc(100% + 50px);
+      left: auto;
+      opacity: 0;
+    }
+  }
+
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .neon {
+      animation: none;
+      opacity: 0;
+    }
+  }
+</style>
