@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import aboutImage from '../assets/images/about.jpg';
+import AnimatedBackground from '../components/ui/AnimatedBackground.astro';
+import aboutIcon from '../assets/icons/about_01.svg';
+
+const whyMerlyPoints = [
+  {
+    title: "Expertise",
+    description: "Our team of experienced traders and analysts brings decades of combined experience in forex markets."
+  },
+  {
+    title: "Transparency",
+    description: "We believe in complete transparency with our investors, providing regular updates and detailed reports."
+  },
+  {
+    title: "Security",
+    description: "Your investments are protected by state-of-the-art security measures and strict risk management protocols."
+  },
+  {
+    title: "Performance",
+    description: "Our track record speaks for itself, with consistent returns even in volatile market conditions."
+  },
+  {
+    title: "Accessibility",
+    description: "We make forex investing accessible to everyone, regardless of their experience level or capital."
+  },
+  {
+    title: "Support",
+    description: "Our dedicated support team is always available to answer your questions and guide you through your investment journey."
+  }
+];
+---
+
+<Layout title="About us - Merly">
+  <div class="relative">
+    <AnimatedBackground />
+    <section class="section section-bg-gray pt-16 md:pt-37.5 pb-(--spacing-section) text-left">
+    <h1 class="heading-xl font-light leading-[1.2] mb-8 md:mb-16 lg:mb-24">Learn more about Merly's philosophy</h1>
+    <Image src={aboutImage} alt="About Merly" class="img-cover h-[310px] mb-(--spacing-section) md:h-[500px] lg:h-[700px]" loading="eager" />
+    <p class="text-body-lg mb-8">
+      Merly is an investment fund that focuses on short- medium term investments in the foreign exchange market, also known as Forex. The fund invests in price fluctuations of various currencies with the goal of generating profits. Merly leverages the buying and selling of currencies against others by anticipating movements in exchange rates.
+    </p>
+    <a href="/about" class="btn-outline btn-icon md:w-fit md:flex md:gap-12 bg-(--color-bg)">
+      <span>See performance</span>
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+       <path d="M7.6416 7.36328L6.92578 7.36426L6.91797 1.83984C6.91765 1.60881 6.6357 1.48832 6.46973 1.6543L0.504883 7.61914L0 7.11816L5.96582 1.15234C6.13124 0.98632 6.00983 0.705733 5.77832 0.706055L0.238281 0.713867L0.237305 0.000976562L7.63086 0L7.6416 7.36328Z" fill="currentColor"/>
+      </svg>
+    </a>
+  </section>
+
+  <section class="pt-(--spacing-section) pb-(--spacing-section) px-(--spacing-container) max-w-(--max-width-site) mx-auto lg:px-0">
+    <h2 class="heading-lg mb-8 md:mb-12">Why Merly ?</h2>
+    <div class="bg-(--color-bg-section) rounded-[5px] p-6 md:p-16 lg:p-24">
+      <div class="why-grid">
+        {whyMerlyPoints.map((point, index) => (
+          <div class="why-item" data-index={index}>
+            <Image src={aboutIcon} alt="" class="w-12 lg:w-16 mb-8 lg:mb-12" aria-hidden="true" />
+            <h3 class="heading-md mb-4 lg:mb-6">{point.title}</h3>
+            <p class="text-body">{point.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+<style>
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 6rem;
+    padding-inline: 1.25rem;
+  }
+
+  .why-item {
+    padding-block: 2rem;
+    border-bottom: 1px dashed var(--color-border);
+  }
+
+  .why-item:last-child {
+    border-bottom: none;
+  }
+
+  @media (min-width: 1024px) {
+    .why-grid {
+      grid-template-columns: 1fr 1fr;
+      padding: 0;
+    }
+
+    .why-item {
+      padding: 2.5rem 0rem;
+    }
+
+    .why-item:nth-child(1),
+    .why-item:nth-child(2) {
+      padding-top: 0;
+    }
+
+    .why-item:nth-child(5),
+    .why-item:nth-child(6) {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .why-item:nth-child(3),
+    .why-item:nth-child(4) {
+      border-bottom: 1px dashed var(--color-border);
+    }
+  }
+
+  @media (min-width: 1512px) {
+    .why-grid {
+      column-gap: 15rem;
+    }
+
+    .why-item {
+      padding: 6rem 0rem;
+    }
+  }
+</style>
+  </div>
+</Layout>
