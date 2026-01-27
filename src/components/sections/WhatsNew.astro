@@ -12,29 +12,31 @@ interface Props {
 const { class: className } = Astro.props;
 
 const articles = [
-  { date: "15.01.26", excerpt: "Perspectives 2026 : Comment positionner son portefeuille face aux incertitudes économiques mondiales.", image: blog01 },
-  { date: "08.01.26", excerpt: "Obligations vs Actions : L'importance d'une allocation équilibrée dans un contexte de taux fluctuants.", image: blog02 },
-  { date: "20.12.25", excerpt: "ESG et Performance : Intégrer les critères durables sans sacrifier le rendement de votre portefeuille.", image: blog03 },
-  { date: "12.12.25", excerpt: "Diversification Sectorielle : Pourquoi les valeurs défensives gardent leur place en 2026.", image: blog04 },
+  { date: "15.01.26", excerpt: "PER ou Assurance-vie : Comment choisir le bon véhicule pour préparer sa retraite en 2026.", image: blog01, slug: "per-assurance-vie-retraite" },
+  { date: "08.01.26", excerpt: "Transmission de patrimoine : Les stratégies pour anticiper et optimiser la succession.", image: blog02, slug: "transmission-patrimoine-succession" },
+  { date: "20.12.25", excerpt: "Investissement immobilier locatif : LMNP, SCI, nue-propriété, quel montage choisir ?", image: blog03, slug: "investissement-immobilier-locatif" },
+  { date: "12.12.25", excerpt: "Réduire son IFI : Les leviers légaux pour optimiser l'impôt sur la fortune immobilière.", image: blog04, slug: "reduire-ifi-optimisation" },
 ];
 ---
 
 <section class:list={["section !pr-0 pb-(--spacing-section)", className]}>
-  <h2 class="heading-lg mb-8">What's new?</h2>
+  <h2 class="heading-lg mb-8">Nos derniers articles</h2>
 
   <div class="articles-scroll flex gap-6 overflow-x-auto pr-6 pb-4">
     {articles.map((article) => (
       <article class="shrink-0 w-[280px] md:w-[310px]">
-        <Image
-          src={article.image}
-          alt="Blog article"
-          class="img-cover h-[400px] mb-5"
-          widths={[280, 400, 500]}
-          sizes="(max-width: 1024px) 280px, 310px"
-          loading="lazy"
-        />
-        <time class="block mb-8">{article.date}</time>
-        <p class="text-body">{article.excerpt}</p>
+        <a href={`/blog/${article.slug}`}>
+          <Image
+            src={article.image}
+            alt="Blog article"
+            class="img-cover h-[400px] mb-5"
+            widths={[280, 400, 500]}
+            sizes="(max-width: 1024px) 280px, 310px"
+            loading="lazy"
+          />
+          <time class="block mb-8">{article.date}</time>
+          <p class="text-body">{article.excerpt}</p>
+        </a>
       </article>
     ))}
   </div>

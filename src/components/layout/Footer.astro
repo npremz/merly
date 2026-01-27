@@ -3,24 +3,24 @@ import { Image } from 'astro:assets';
 import footerBg from '../../assets/images/footer_bg.png';
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About us", href: "/about" },
+  { label: "Accueil", href: "/" },
+  { label: "Le cabinet", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "Blog", href: "/blog" },
+  { label: "Ressources", href: "/blog" },
 ];
 
 const contactInfo = [
-  "hello@merly.com",
-  "Investment Strategy",
-  "WhatsApp",
+  "contact@merly-patrimoine.fr",
+  "01 23 45 67 89",
+  "Paris, France",
 ];
 ---
 
 <footer class="relative max-w-(--max-width-site) mx-auto before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:w-screen before:-z-20 before:bg-(--color-bg-section)">
   <div class="section-primary">
     <Image src={footerBg} alt="" class="hidden md:block absolute top-0 h-full w-auto object-cover object-left" style="right: calc((100% - 100vw) / 2);" aria-hidden="true" loading="lazy" />
-    <p class="heading-xl md:text-[2.25rem] lg:text-[3.25rem] md:max-w-[520px] lg:max-w-[685px] mb-6 relative z-10">Begin your investment journey and build your portfolio today</p>
-    <a href="/register" class="btn-white md:w-fit relative z-10">Get started</a>
+    <p class="heading-xl md:text-[2.25rem] lg:text-[3.25rem] md:max-w-[520px] lg:max-w-[685px] mb-6 relative z-10">Prenez le contrôle de votre patrimoine avec un accompagnement sur-mesure</p>
+    <a href="/contact" class="btn-white md:w-fit relative z-10">Prendre rendez-vous</a>
   </div>
 
   <div class="section-dark pt-16 pb-10 md:pb-16">
@@ -43,10 +43,10 @@ const contactInfo = [
       </div>
     </div>
     <div class="flex justify-between border-dashed-dark pt-10">
-      <p class="m-0">© 2026 Merly</p>
+      <p class="m-0">© 2026 Merly Patrimoine - CIF membre ANACOFI n°XXXXXX - ORIAS n°XX XXX XXX</p>
       <div class="flex flex-col mr-2 gap-5 md:flex-row md:gap-16 lg:mr-16">
-        <a href="/privacy" class="no-underline">Privacy Policy</a>
-        <p class="m-0">By Horde Agence</p>
+        <a href="/privacy" class="no-underline">Mentions légales</a>
+        <a href="/privacy" class="no-underline">Politique de confidentialité</a>
       </div>
     </div>
   </div>

@@ -1,113 +1,121 @@
 ---
-// Simulate Investment section
-const monthlyReturnRate = 0.0063; // 0.63% monthly return (approx 7.8% annual - historical equity/bond portfolio average)
+// Simulateur d'économie d'impôt PER
 ---
 
 <section class="section flex flex-col gap-5">
-  <h2 class="heading-lg mb-3">Simulate your investment</h2>
+  <h2 class="heading-lg mb-3">Simulez votre économie d'impôt</h2>
 
   <div class="lg:flex lg:flex-row-reverse lg:gap-8">
     <div class="card flex flex-col gap-5 mb-4 md:p-16 lg:w-2/3 lg:mb-0">
-      <div class="flex flex-col gap-5 md:flex-row md:gap-16">
-        <div class="flex flex-col gap-2.5 md:gap-6">
-          <span class="text-body">Simulated investment</span>
-          <span id="display-investment" class="heading-md text-xl md:text-[1.75rem]">10 000 €</span>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="result-card">
+          <span class="text-body text-(--color-text-muted)">Économie d'impôt</span>
+          <span id="display-economy" class="font-machina text-4xl md:text-5xl text-(--color-primary)">3 000 €</span>
+          <span class="text-sm text-(--color-text-muted)">Réduction immédiate</span>
         </div>
-        <div class="flex flex-col gap-2.5 md:gap-6">
-          <span class="text-body">Total return</span>
-          <span id="display-return" class="heading-md text-xl md:text-[1.75rem]">7,82 %</span>
+        <div class="result-card">
+          <span class="text-body text-(--color-text-muted)">Coût réel du versement</span>
+          <span id="display-cost" class="font-machina text-4xl md:text-5xl">7 000 €</span>
+          <span class="text-sm text-(--color-text-muted)">Après avantage fiscal</span>
         </div>
       </div>
 
-      <div class="chart-container relative h-[250px] mt-4 md:mt-8 md:h-[340px] w-full">
-        <svg id="investment-chart" class="w-full h-full">
-          <!-- Grid lines -->
-          <g id="chart-grid"></g>
-          <!-- Y axis labels -->
-          <g id="chart-y-labels" class="chart-labels"></g>
-          <!-- Line -->
-          <path id="chart-line" fill="none" stroke="var(--color-primary)" stroke-width="2" />
-          <!-- Points -->
-          <g id="chart-points"></g>
-        </svg>
-        <div id="chart-tooltip" class="absolute hidden bg-(--color-bg-dark) text-white text-sm px-3 py-2 rounded pointer-events-none z-10">
-          <div id="tooltip-month" class="text-xs text-(--color-text-muted)"></div>
-          <div id="tooltip-value" class="font-medium"></div>
+      <div class="visual-bar mt-4">
+        <div class="bar-label flex justify-between text-sm mb-2">
+          <span>Versement total</span>
+          <span id="display-total">10 000 €</span>
+        </div>
+        <div class="bar-container">
+          <div id="bar-economy" class="bar bar-economy" style="width: 30%"></div>
+          <div id="bar-cost" class="bar bar-cost" style="width: 70%"></div>
+        </div>
+        <div class="bar-legend flex justify-between text-xs mt-2 text-(--color-text-muted)">
+          <span><span class="legend-dot economy"></span> L'État paie pour vous</span>
+          <span><span class="legend-dot cost"></span> Ce que vous payez vraiment</span>
         </div>
       </div>
+
+      <p class="text-sm text-(--color-text-muted) mt-4 pt-6 border-t border-dashed border-(--color-border)">
+        Versement sur un Plan d'Épargne Retraite (PER). Sommes bloquées jusqu'à la retraite sauf exceptions (achat résidence principale, etc.).
+      </p>
     </div>
 
-    <div class="card-bordered py-8 px-5 flex flex-col gap-8 md:p-16 lg:w-1/3 lg:justify-around">
+    <div class="card-bordered py-8 px-5 flex flex-col gap-8 md:p-16 lg:w-1/3 lg:justify-center">
       <div class="flex flex-col gap-5">
-        <label for="amount" class="font-medium">How much would you like to invest ? (€)</label>
-        <input type="number" id="amount" value="10000" min="50" step="50" class="input-dashed" />
+        <label for="tmi" class="font-medium">Votre tranche d'imposition (TMI)</label>
+        <select id="tmi" class="input-dashed cursor-pointer">
+          <option value="0">0% - Non imposable</option>
+          <option value="11">11% - Revenus modestes</option>
+          <option value="30" selected>30% - Revenus moyens-hauts</option>
+          <option value="41">41% - Hauts revenus</option>
+          <option value="45">45% - Très hauts revenus</option>
+        </select>
       </div>
       <div class="flex flex-col gap-5">
-        <label for="months" class="font-medium">What investment duration are you aiming for ? (Months)</label>
-        <div class="relative flex items-center w-full">
-          <input type="number" id="months" value="12" min="1" max="60" class="input-dashed number-input w-full" />
-          <div class="absolute right-0 flex flex-col">
-            <button type="button" class="number-btn up flex items-center justify-center w-11 h-11 bg-transparent border-none cursor-pointer color-muted p-0 hover:text-(--color-primary)" aria-label="Increase">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="18 15 12 9 6 15"></polyline>
-              </svg>
-            </button>
-            <button type="button" class="number-btn down flex items-center justify-center w-11 h-11 bg-transparent border-none cursor-pointer color-muted p-0 hover:text-(--color-primary)" aria-label="Decrease">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </button>
-          </div>
-        </div>
+        <label for="versement" class="font-medium">Montant à verser (€)</label>
+        <input type="number" id="versement" value="10000" min="500" max="9999999" step="500" class="input-dashed" />
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* Hide native number input spinners */
-  .number-input {
-    -moz-appearance: textfield;
+  .result-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background: var(--color-bg);
+    border-radius: 5px;
   }
-  .number-input::-webkit-outer-spin-button,
-  .number-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+
+  .bar-container {
+    height: 24px;
+    background: var(--color-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
   }
-  .chart-labels text {
-    font-size: 11px;
-    fill: var(--color-text-muted);
+
+  .bar {
+    height: 100%;
+    transition: width 0.4s ease;
   }
-  #chart-points circle {
-    transition: r 0.15s ease;
+
+  .bar-cost {
+    background: var(--color-text);
+  }
+
+  .bar-economy {
+    background: var(--color-primary);
+  }
+
+  .legend-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+
+  .legend-dot.cost {
+    background: var(--color-text);
+  }
+
+  .legend-dot.economy {
+    background: var(--color-primary);
   }
 </style>
 
 <script>
-  const amountInput = document.getElementById('amount') as HTMLInputElement;
-  const monthsInput = document.getElementById('months') as HTMLInputElement;
-  const upBtn = document.querySelector('.number-btn.up');
-  const downBtn = document.querySelector('.number-btn.down');
-  const displayInvestment = document.getElementById('display-investment');
-  const displayReturn = document.getElementById('display-return');
-  const chartLine = document.getElementById('chart-line');
-  const chartGrid = document.getElementById('chart-grid');
-  const chartYLabels = document.getElementById('chart-y-labels');
-  const chartPoints = document.getElementById('chart-points');
-  const chartContainer = document.querySelector('.chart-container') as HTMLElement;
-  const tooltip = document.getElementById('chart-tooltip');
-  const tooltipMonth = document.getElementById('tooltip-month');
-  const tooltipValue = document.getElementById('tooltip-value');
-
-  const MONTHLY_RETURN_RATE = 0.0063;
-
-  function calculateInvestmentData(principal: number, months: number): number[] {
-    const data: number[] = [principal];
-    for (let i = 1; i <= months; i++) {
-      data.push(data[i - 1] * (1 + MONTHLY_RETURN_RATE));
-    }
-    return data;
-  }
+  const tmiSelect = document.getElementById('tmi') as HTMLSelectElement;
+  const versementInput = document.getElementById('versement') as HTMLInputElement;
+  const displayEconomy = document.getElementById('display-economy');
+  const displayCost = document.getElementById('display-cost');
+  const displayTotal = document.getElementById('display-total');
+  const barCost = document.getElementById('bar-cost');
+  const barEconomy = document.getElementById('bar-economy');
 
   function formatCurrency(value: number): string {
     return new Intl.NumberFormat('fr-FR', {
@@ -117,166 +125,27 @@ const monthlyReturnRate = 0.0063; // 0.63% monthly return (approx 7.8% annual - 
     }).format(value) + ' €';
   }
 
-  function formatCurrencyShort(value: number): string {
-    if (value >= 1000000) {
-      return (value / 1000000).toFixed(1) + 'M €';
-    } else if (value >= 1000) {
-      return (value / 1000).toFixed(1) + 'k €';
-    }
-    return value.toFixed(0) + ' €';
+  function updateSimulation() {
+    const tmi = parseInt(tmiSelect.value) / 100;
+    const versement = parseFloat(versementInput.value) || 0;
+
+    const economy = Math.round(versement * tmi);
+    const cost = versement - economy;
+
+    if (displayEconomy) displayEconomy.textContent = formatCurrency(economy);
+    if (displayCost) displayCost.textContent = formatCurrency(cost);
+    if (displayTotal) displayTotal.textContent = formatCurrency(versement);
+
+    // Update bars
+    const costPercent = versement > 0 ? (cost / versement) * 100 : 100;
+    const economyPercent = versement > 0 ? (economy / versement) * 100 : 0;
+
+    if (barCost) barCost.style.width = `${costPercent}%`;
+    if (barEconomy) barEconomy.style.width = `${economyPercent}%`;
   }
 
-  function formatPercent(value: number): string {
-    return new Intl.NumberFormat('fr-FR', {
-      style: 'decimal',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    }).format(value) + ' %';
-  }
+  tmiSelect?.addEventListener('change', updateSimulation);
+  versementInput?.addEventListener('input', updateSimulation);
 
-  function updateChart() {
-    const principal = parseFloat(amountInput.value) || 10000;
-    const months = parseInt(monthsInput.value) || 12;
-    const data = calculateInvestmentData(principal, months);
-
-    const finalValue = data[data.length - 1];
-    const totalReturn = ((finalValue - principal) / principal) * 100;
-
-    if (displayInvestment) displayInvestment.textContent = formatCurrency(principal);
-    if (displayReturn) displayReturn.textContent = formatPercent(totalReturn);
-
-    const svg = document.getElementById('investment-chart');
-    if (!svg || !chartLine || !chartGrid || !chartYLabels || !chartPoints) return;
-
-    const rect = svg.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const padding = { top: 20, right: 20, bottom: 20, left: 60 };
-
-    const chartWidth = width - padding.left - padding.right;
-    const chartHeight = height - padding.top - padding.bottom;
-
-    const minValue = Math.min(...data) * 0.98;
-    const maxValue = Math.max(...data) * 1.02;
-    const valueRange = maxValue - minValue;
-
-    const xScale = (i: number) => padding.left + (i / (data.length - 1)) * chartWidth;
-    const yScale = (v: number) => padding.top + chartHeight - ((v - minValue) / valueRange) * chartHeight;
-
-    // Clear previous elements
-    chartGrid.innerHTML = '';
-    chartYLabels.innerHTML = '';
-
-    // Draw horizontal grid lines and Y labels
-    const yTickCount = 5;
-    for (let i = 0; i <= yTickCount; i++) {
-      const value = minValue + (valueRange * i) / yTickCount;
-      const y = yScale(value);
-
-      // Grid line
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.setAttribute('x1', String(padding.left));
-      line.setAttribute('y1', String(y));
-      line.setAttribute('x2', String(width - padding.right));
-      line.setAttribute('y2', String(y));
-      line.setAttribute('stroke', 'var(--color-border)');
-      line.setAttribute('stroke-dasharray', '4,4');
-      line.setAttribute('opacity', '0.5');
-      chartGrid.appendChild(line);
-
-      // Y label
-      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      text.setAttribute('x', String(padding.left - 10));
-      text.setAttribute('y', String(y + 4));
-      text.setAttribute('text-anchor', 'end');
-      text.setAttribute('fill', 'var(--color-text-muted)');
-      text.setAttribute('font-size', '11');
-      text.textContent = formatCurrencyShort(value);
-      chartYLabels.appendChild(text);
-    }
-
-    // Build line path
-    let linePath = `M ${xScale(0)} ${yScale(data[0])}`;
-    for (let i = 1; i < data.length; i++) {
-      linePath += ` L ${xScale(i)} ${yScale(data[i])}`;
-    }
-    chartLine.setAttribute('d', linePath);
-
-    // Add interactive points
-    chartPoints.innerHTML = '';
-    const pointInterval = months > 24 ? Math.ceil(months / 12) : 1;
-
-    data.forEach((value, i) => {
-      if (i % pointInterval !== 0 && i !== data.length - 1) return;
-
-      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      circle.setAttribute('cx', String(xScale(i)));
-      circle.setAttribute('cy', String(yScale(value)));
-      circle.setAttribute('r', '4');
-      circle.setAttribute('fill', 'var(--color-primary)');
-      circle.setAttribute('class', 'chart-point');
-      circle.setAttribute('data-month', String(i));
-      circle.setAttribute('data-value', String(value));
-      circle.style.cursor = 'pointer';
-      chartPoints.appendChild(circle);
-    });
-  }
-
-  // Tooltip handling
-  chartContainer?.addEventListener('mouseover', (e: MouseEvent) => {
-    const target = e.target as SVGCircleElement;
-    if (target.classList.contains('chart-point')) {
-      target.setAttribute('r', '6');
-      const month = target.getAttribute('data-month');
-      const value = parseFloat(target.getAttribute('data-value') || '0');
-
-      if (tooltip && tooltipMonth && tooltipValue) {
-        tooltipMonth.textContent = `Month ${month}`;
-        tooltipValue.textContent = formatCurrency(value);
-        tooltip.classList.remove('hidden');
-      }
-    }
-  });
-
-  chartContainer?.addEventListener('mousemove', (e: MouseEvent) => {
-    if (tooltip && !tooltip.classList.contains('hidden')) {
-      const rect = chartContainer.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      tooltip.style.left = `${x + 15}px`;
-      tooltip.style.top = `${y - 45}px`;
-    }
-  });
-
-  chartContainer?.addEventListener('mouseout', (e: MouseEvent) => {
-    const target = e.target as SVGCircleElement;
-    if (target.classList.contains('chart-point')) {
-      target.setAttribute('r', '4');
-      tooltip?.classList.add('hidden');
-    }
-  });
-
-  // Input handlers
-  upBtn?.addEventListener('click', () => {
-    const max = parseInt(monthsInput.max) || 60;
-    if (parseInt(monthsInput.value) < max) {
-      monthsInput.value = String(parseInt(monthsInput.value) + 1);
-      updateChart();
-    }
-  });
-
-  downBtn?.addEventListener('click', () => {
-    const min = parseInt(monthsInput.min) || 1;
-    if (parseInt(monthsInput.value) > min) {
-      monthsInput.value = String(parseInt(monthsInput.value) - 1);
-      updateChart();
-    }
-  });
-
-  amountInput?.addEventListener('input', updateChart);
-  monthsInput?.addEventListener('input', updateChart);
-
-  // Initial render
-  updateChart();
-  window.addEventListener('resize', updateChart);
+  updateSimulation();
 </script>

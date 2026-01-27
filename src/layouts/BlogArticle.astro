@@ -1,0 +1,53 @@
+---
+import Layout from './Layout.astro';
+import { Image } from 'astro:assets';
+import AnimatedBackground from '../components/ui/AnimatedBackground.astro';
+
+interface Props {
+  title: string;
+  date: string;
+  category: string;
+  image: ImageMetadata;
+}
+
+const { title, date, category, image } = Astro.props;
+---
+
+<Layout title={`${title} - Merly Patrimoine`}>
+  <div class="relative">
+    <AnimatedBackground />
+    <article class="section section-bg-gray pt-16 md:pt-37.5 pb-(--spacing-section)">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-4 mb-8">
+          <a href="/blog" class="text-sm text-(--color-text-muted) hover:text-(--color-primary) transition-colors">&larr; Retour aux ressources</a>
+        </div>
+
+        <div class="flex items-center gap-4 mb-8">
+          <span class="text-sm text-(--color-text-muted)">{date}</span>
+          <span class="text-sm px-3 py-1 bg-(--color-bg-section) rounded-full">{category}</span>
+        </div>
+
+        <h1 class="heading-xl font-light leading-[1.2] mb-8">{title}</h1>
+
+        <Image
+          src={image}
+          alt={title}
+          class="img-cover h-[300px] md:h-[450px] rounded-[5px] mb-12"
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 768px) 100vw, 800px"
+          loading="eager"
+        />
+
+        <div class="prose prose-lg">
+          <slot />
+
+          <div class="bg-(--color-bg-section) p-8 rounded-[5px] mt-12">
+            <p class="text-body-lg font-medium mb-4">Besoin d'un accompagnement personnalisé ?</p>
+            <p class="text-body mb-6">Nos conseillers analysent votre situation pour vous proposer les solutions les plus adaptées.</p>
+            <a href="/contact" class="btn-outline">Prendre rendez-vous</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</Layout>

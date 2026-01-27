@@ -1,0 +1,47 @@
+---
+import BlogArticle from '../../layouts/BlogArticle.astro';
+import blogImage from '../../assets/images/blog03.jpg';
+---
+
+<BlogArticle
+  title="Investissement immobilier locatif : LMNP, SCI, nue-propriété, quel montage choisir ?"
+  date="20.12.25"
+  category="Immobilier"
+  image={blogImage}
+>
+  <p class="text-body-lg mb-8">
+    L'immobilier locatif reste une valeur sûre du patrimoine français. Mais le choix du véhicule juridique et fiscal impacte significativement la rentabilité et la transmission. Tour d'horizon des options.
+  </p>
+
+  <h2 class="heading-md mt-12 mb-6">La location meublée (LMNP/LMP)</h2>
+  <p class="text-body mb-6">
+    Le statut de Loueur en Meublé Non Professionnel permet d'amortir le bien et les meubles, réduisant ainsi fortement l'imposition des loyers. Le régime réel est souvent plus avantageux que le micro-BIC.
+  </p>
+  <p class="text-body mb-6">
+    Avantages : fiscalité optimisée, revenus peu ou pas imposés pendant de nombreuses années. Inconvénients : contraintes de gestion, déclaration comptable, plus-value calculée sur la valeur résiduelle.
+  </p>
+
+  <h2 class="heading-md mt-12 mb-6">La SCI à l'IR ou à l'IS</h2>
+  <p class="text-body mb-6">
+    La SCI à l'IR est transparente fiscalement : les revenus sont imposés chez les associés selon leur quote-part. Utile pour la transmission (donation de parts) mais pas d'amortissement possible.
+  </p>
+  <p class="text-body mb-6">
+    La SCI à l'IS permet l'amortissement et offre une fiscalité à taux réduit (15% jusqu'à 42 500€). Mais les dividendes sont doublement imposés et la plus-value calculée sur la valeur nette comptable.
+  </p>
+
+  <h2 class="heading-md mt-12 mb-6">L'achat en nue-propriété</h2>
+  <p class="text-body mb-6">
+    Acquérir la nue-propriété d'un bien (souvent avec un bailleur social usufruitier pour 15-20 ans) permet d'acheter avec une décote de 30 à 40%. Pas de revenus mais pas de gestion ni de fiscalité pendant la période.
+  </p>
+  <p class="text-body mb-6">
+    Idéal pour préparer sa retraite : vous récupérez la pleine propriété au moment où vous aurez besoin de revenus complémentaires.
+  </p>
+
+  <h2 class="heading-md mt-12 mb-6">Comment choisir ?</h2>
+  <ul class="list-disc pl-6 mb-8 space-y-3">
+    <li class="text-body"><strong>Objectif de revenus immédiats :</strong> LMNP au régime réel</li>
+    <li class="text-body"><strong>Objectif de transmission :</strong> SCI à l'IR avec démembrement des parts</li>
+    <li class="text-body"><strong>Objectif de capitalisation :</strong> SCI à l'IS ou nue-propriété</li>
+    <li class="text-body"><strong>Objectif retraite :</strong> Nue-propriété temporaire</li>
+  </ul>
+</BlogArticle>

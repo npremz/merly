@@ -1,10 +1,10 @@
 ---
 // Header component - Mobile first, full nav at lg (1512px)
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About us", href: "/about" },
+  { label: "Accueil", href: "/" },
+  { label: "Le cabinet", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "Blog", href: "/blog" },
+  { label: "Ressources", href: "/blog" },
 ];
 ---
 
@@ -23,8 +23,8 @@ const navLinks = [
 
   <!-- CTAs - visible at lg -->
   <div class="hidden lg:flex lg:items-center lg:gap-8">
-    <a href="/simulate" class="text-(--color-text) transition-opacity border-b hover:opacity-70">Simulate your investment</a>
-    <a href="/register" class="btn-outline !w-auto !py-3">Get started</a>
+    <a href="/#estimateur" class="text-(--color-text) transition-opacity border-b hover:opacity-70">Estimer mes frais</a>
+    <a href="/contact" class="btn-outline !w-auto !py-3">Prendre rendez-vous</a>
   </div>
 
   <!-- Burger - hidden at lg -->
@@ -40,6 +40,49 @@ const navLinks = [
     <span class="burger-line block w-full h-px bg-current transition-all duration-300"></span>
   </button>
 </header>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-nav" class="mobile-menu fixed inset-0 z-[100] bg-white lg:hidden" aria-hidden="true">
+  <!-- Mobile Menu Header -->
+  <div class="flex items-center justify-between py-6 px-(--spacing-container)">
+    <a href="/" class="flex items-center" aria-label="Accueil">
+      <img src="/logoMerly.svg" alt="Merly" class="block w-[75px] md:w-[100px] h-auto" width="100" height="30" />
+    </a>
+    <button
+      class="mobile-menu-close w-11 h-11 flex items-center justify-center bg-transparent border-none cursor-pointer"
+      type="button"
+      aria-label="Fermer le menu"
+    >
+      <svg width="21" height="21" viewBox="0 0 21 21" fill="none" stroke="currentColor" stroke-width="1">
+        <line x1="0" y1="21" x2="21" y2="0" />
+        <line x1="0" y1="0" x2="21" y2="21" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav class="flex flex-col items-end gap-2.5 px-(--spacing-container) mt-8">
+    {navLinks.map((link, index) => (
+      <a
+        href={link.href}
+        class="mobile-nav-link text-[36px] font-normal tracking-[-0.36px] leading-[1.36] text-(--color-text) no-underline"
+        style={`--delay: ${index * 50}ms`}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+
+  <!-- Mobile CTAs -->
+  <div class="flex flex-col items-end gap-4 px-(--spacing-container) mt-12">
+    <a href="/#estimateur" class="mobile-nav-link text-lg text-(--color-text) border-b border-current" style="--delay: 200ms">
+      Estimer mes frais
+    </a>
+    <a href="/contact" class="mobile-nav-link btn-outline !w-auto mt-2" style="--delay: 250ms">
+      Prendre rendez-vous
+    </a>
+  </div>
+</div>
 
 <style>
   /* Header hide on scroll down */
@@ -57,16 +100,84 @@ const navLinks = [
   .burger[aria-expanded="true"] .burger-line:nth-child(3) {
     transform: translateY(-4px) rotate(-45deg);
   }
+
+  /* Mobile menu styles */
+  .mobile-menu {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .mobile-menu[aria-hidden="false"] {
+    clip-path: inset(0 0 0 0);
+    pointer-events: auto;
+  }
+
+  /* Mobile nav links animation */
+  .mobile-nav-link {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition-delay: var(--delay, 0ms);
+  }
+
+  .mobile-menu[aria-hidden="false"] .mobile-nav-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Close button hover */
+  .mobile-menu-close {
+    transition: transform 0.2s ease;
+  }
+
+  .mobile-menu-close:hover {
+    transform: rotate(90deg);
+  }
 </style>
 
 <script>
   const burger = document.querySelector('.burger');
   const header = document.querySelector('.header');
+  const mobileMenu = document.getElementById('mobile-nav');
+  const closeBtn = document.querySelector('.mobile-menu-close');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  function openMenu() {
+    mobileMenu?.setAttribute('aria-hidden', 'false');
+    burger?.setAttribute('aria-expanded', 'true');
+    burger?.setAttribute('aria-label', 'Fermer le menu');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileMenu?.setAttribute('aria-hidden', 'true');
+    burger?.setAttribute('aria-expanded', 'false');
+    burger?.setAttribute('aria-label', 'Ouvrir le menu');
+    document.body.style.overflow = '';
+  }
 
   burger?.addEventListener('click', () => {
     const isExpanded = burger.getAttribute('aria-expanded') === 'true';
-    burger.setAttribute('aria-expanded', String(!isExpanded));
-    burger.setAttribute('aria-label', isExpanded ? 'Ouvrir le menu' : 'Fermer le menu');
+    if (isExpanded) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  closeBtn?.addEventListener('click', closeMenu);
+
+  // Close menu on nav link click
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu?.getAttribute('aria-hidden') === 'false') {
+      closeMenu();
+    }
   });
 
   // Hide header on scroll down, show on scroll up

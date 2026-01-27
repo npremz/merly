@@ -3,46 +3,46 @@ import Layout from '../layouts/Layout.astro';
 import AnimatedBackground from '../components/ui/AnimatedBackground.astro';
 ---
 
-<Layout title="Contact - Merly">
+<Layout title="Contact - Merly Patrimoine">
   <div class="relative">
     <AnimatedBackground />
 
     <!-- Marquee -->
     <div class="marquee-container overflow-hidden pt-16 md:pt-34 lg:pt-68">
       <div class="marquee-track">
-        <span class="marquee-text">Let's connect →</span>
-        <span class="marquee-text">Let's connect →</span>
-        <span class="marquee-text">Let's connect →</span>
-        <span class="marquee-text">Let's connect →</span>
-        <span class="marquee-text">Let's connect →</span>
-        <span class="marquee-text">Let's connect →</span>
-        <span class="marquee-text">Let's connect →</span>
-        <span class="marquee-text">Let's connect →</span>
+        <span class="marquee-text">Parlons de votre projet →</span>
+        <span class="marquee-text">Parlons de votre projet →</span>
+        <span class="marquee-text">Parlons de votre projet →</span>
+        <span class="marquee-text">Parlons de votre projet →</span>
+        <span class="marquee-text">Parlons de votre projet →</span>
+        <span class="marquee-text">Parlons de votre projet →</span>
+        <span class="marquee-text">Parlons de votre projet →</span>
+        <span class="marquee-text">Parlons de votre projet →</span>
       </div>
     </div>
 
     <!-- Contact Form -->
     <section class="pb-(--spacing-section) pt-8 md:pt-16 lg:pt-32 px-(--spacing-container) max-w-(--max-width-site) mx-auto lg:px-0">
       <div class="bg-(--color-bg-section) rounded-[5px] p-8 md:p-16">
-        <h1 class="font-machina text-xl md:text-[26px] lg:text-[28px] leading-[1.35] mb-8 md:mb-12 max-w-[462px]">Questions about your portfolio or investment strategy?</h1>
+        <h1 class="font-machina text-xl md:text-[26px] lg:text-[28px] leading-[1.35] mb-8 md:mb-12 max-w-[462px]">Une question sur votre patrimoine ? Prenons rendez-vous.</h1>
 
         <div class="border-t border-(--color-border) border-dashed mb-8 md:mb-12"></div>
 
         <form class="contact-form" action="#" method="POST">
           <div class="form-row">
             <div class="form-group">
-              <label for="firstName" class="form-label">First Name</label>
-              <input type="text" id="firstName" name="firstName" class="input-dashed px-4 w-full" placeholder="First Name *" required>
+              <label for="firstName" class="form-label">Prénom</label>
+              <input type="text" id="firstName" name="firstName" class="input-dashed px-4 w-full" placeholder="Prénom *" required>
             </div>
             <div class="form-group">
-              <label for="lastName" class="form-label">Last Name</label>
-              <input type="text" id="lastName" name="lastName" class="input-dashed px-4 w-full" placeholder="Last Name *" required>
+              <label for="lastName" class="form-label">Nom</label>
+              <input type="text" id="lastName" name="lastName" class="input-dashed px-4 w-full" placeholder="Nom *" required>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="phone" class="form-label">Phone</label>
-            <input type="tel" id="phone" name="phone" class="input-dashed px-4 w-full" placeholder="Phone *" required>
+            <label for="phone" class="form-label">Téléphone</label>
+            <input type="tel" id="phone" name="phone" class="input-dashed px-4 w-full" placeholder="Téléphone *" required>
           </div>
 
           <div class="form-group">
@@ -51,18 +51,18 @@ import AnimatedBackground from '../components/ui/AnimatedBackground.astro';
           </div>
 
           <div class="form-group">
-            <label for="message" class="form-label">Message</label>
-            <textarea id="message" name="message" class="input-dashed px-4 w-full min-h-[150px] resize-y" placeholder="Message *" rows="5" required></textarea>
+            <label for="message" class="form-label">Votre projet</label>
+            <textarea id="message" name="message" class="input-dashed px-4 w-full min-h-[150px] resize-y" placeholder="Décrivez brièvement votre situation et vos objectifs *" rows="5" required></textarea>
           </div>
 
           <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <label class="flex items-start gap-3 cursor-pointer">
               <input type="checkbox" name="privacy" class="sr-only peer" required>
               <span class="checkbox-custom"></span>
-              <span class="text-body">You accept our <a href="/privacy" class="underline text-(--color-primary)">Privacy Policy</a>.</span>
+              <span class="text-body">J'accepte la <a href="/privacy" class="underline text-(--color-primary)">politique de confidentialité</a>.</span>
             </label>
 
-            <button type="submit" class="btn-outline md:w-auto">Transmit</button>
+            <button type="submit" class="btn-outline md:w-auto">Envoyer</button>
           </div>
         </form>
       </div>

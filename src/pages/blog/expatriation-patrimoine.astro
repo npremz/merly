@@ -1,0 +1,58 @@
+---
+import BlogArticle from '../../layouts/BlogArticle.astro';
+import blogImage from '../../assets/images/result.jpg';
+---
+
+<BlogArticle
+  title="Expatriation et patrimoine : les points de vigilance fiscaux et juridiques"
+  date="05.10.25"
+  category="Guide"
+  image={blogImage}
+>
+  <p class="text-body-lg mb-8">
+    Partir vivre à l'étranger a des implications patrimoniales majeures. Fiscalité, succession, protection sociale : les questions à anticiper sont nombreuses.
+  </p>
+
+  <h2 class="heading-md mt-12 mb-6">La résidence fiscale : un changement majeur</h2>
+  <p class="text-body mb-6">
+    Le transfert de résidence fiscale à l'étranger modifie profondément votre situation. Vous devenez non-résident français et serez imposé selon les règles de votre nouveau pays de résidence.
+  </p>
+  <p class="text-body mb-6">
+    Attention : la notion de résidence fiscale varie selon les pays. Les conventions fiscales bilatérales évitent la double imposition mais peuvent créer des complexités.
+  </p>
+
+  <h2 class="heading-md mt-12 mb-6">L'exit tax : le coût du départ</h2>
+  <p class="text-body mb-6">
+    Si vous détenez des participations significatives (plus de 800 000€ ou 50% d'une société), le transfert de domicile peut déclencher une imposition sur les plus-values latentes.
+  </p>
+  <p class="text-body mb-6">
+    Un sursis de paiement automatique est possible vers l'UE/EEE, mais des garanties peuvent être exigées pour d'autres destinations.
+  </p>
+
+  <h2 class="heading-md mt-12 mb-6">Vos placements financiers</h2>
+
+  <h3 class="text-lg font-medium mt-8 mb-4">L'assurance-vie</h3>
+  <p class="text-body mb-6">
+    Le contrat reste valable mais la fiscalité change. Les rachats seront soumis aux règles du nouveau pays de résidence.
+  </p>
+
+  <h3 class="text-lg font-medium mt-8 mb-4">Le PEA</h3>
+  <p class="text-body mb-6">
+    Le PEA doit être clôturé en cas de transfert de domicile hors de l'UE/EEE/Monaco. Au sein de l'UE, il peut être conservé mais avec des conséquences fiscales variables.
+  </p>
+
+  <h2 class="heading-md mt-12 mb-6">L'immobilier français</h2>
+  <p class="text-body mb-6">
+    Les revenus locatifs de biens situés en France restent imposables en France (régime des non-résidents). La CSG/CRDS s'applique toujours. La plus-value à la revente sera également imposée en France.
+  </p>
+
+  <h2 class="heading-md mt-12 mb-6">Avant de partir : la checklist</h2>
+  <ul class="list-disc pl-6 mb-8 space-y-3">
+    <li class="text-body">Faire un bilan patrimonial complet avec valorisation des actifs</li>
+    <li class="text-body">Identifier les implications de l'exit tax</li>
+    <li class="text-body">Revoir l'allocation de vos placements</li>
+    <li class="text-body">Adapter votre assurance-vie (clause bénéficiaire, arbitrages)</li>
+    <li class="text-body">Revoir votre testament et régime matrimonial</li>
+    <li class="text-body">Anticiper la protection sociale (retraite, santé)</li>
+  </ul>
+</BlogArticle>

@@ -13,43 +13,43 @@ import WhatsNew from '../components/sections/WhatsNew.astro';
 
 const whyMerlyPoints = [
   {
-    title: "Transparent fee structure",
-    description: "No hidden costs or management fees. We only charge a 35% performance commission on profits, directly aligned with your success. Your capital works entirely for you.",
+    title: "Indépendance totale",
+    description: "Aucune commission sur les produits recommandés. Notre rémunération exclusivement sur honoraires garantit des conseils objectifs, alignés uniquement sur vos intérêts.",
     icon: aboutIcon01
   },
   {
-    title: "Digital-first platform",
-    description: "Manage your portfolio from anywhere with our secure online platform. Real-time dashboard, monthly reports, and instant access to your investment performance.",
+    title: "Approche globale",
+    description: "Patrimoine financier, immobilier, fiscalité, prévoyance, transmission : nous analysons l'ensemble de votre situation pour une stratégie cohérente et optimisée.",
     icon: aboutIcon02
   },
   {
-    title: "Balanced allocation",
-    description: "We combine quality equities with investment-grade bonds to build resilient portfolios. Our 60/40 approach adapts to market conditions while targeting consistent returns.",
+    title: "Expertise certifiée",
+    description: "Diplômés en gestion de patrimoine, nous sommes membres de l'ANACOFI-CIF et immatriculés à l'ORIAS. Formation continue pour rester à jour des évolutions réglementaires.",
     icon: aboutIcon03
   },
   {
-    title: "Risk-adjusted returns",
-    description: "Diversification across sectors, geographies and asset classes. We monitor volatility and rebalance positions to protect your capital during market downturns.",
+    title: "Accompagnement personnalisé",
+    description: "Chaque situation est unique. Nous prenons le temps de comprendre vos objectifs, votre profil de risque et vos contraintes pour bâtir une stratégie sur-mesure.",
     icon: aboutIcon04
   },
   {
-    title: "Dedicated support",
-    description: "Access our investment team for personalized guidance. Quarterly portfolio reviews, market insights, and proactive communication on significant market events.",
+    title: "Disponibilité permanente",
+    description: "Un conseiller dédié, joignable facilement. Points réguliers, réactivité face aux évolutions de votre vie, et accompagnement lors des décisions importantes.",
     icon: aboutIcon05
   },
   {
-    title: "Proven methodology",
-    description: "Fundamental analysis combined with macroeconomic research. We select undervalued stocks and high-quality bonds based on rigorous financial criteria and long-term trends.",
+    title: "Transparence des frais",
+    description: "Tarifs clairs communiqués en amont. Pas de surprise, pas de frais cachés. Vous savez exactement ce que vous payez et ce que vous obtenez en retour.",
     icon: aboutIcon06
   }
 ];
 ---
 
-<Layout title="About us - Merly">
+<Layout title="Le cabinet - Merly">
   <div class="relative">
     <AnimatedBackground />
     <section class="section section-bg-gray pt-16 md:pt-37.5 pb-(--spacing-section) text-left">
-    <h1 class="heading-xl font-light leading-[1.2] mb-8 md:mb-16 lg:mb-24">Learn more about Merly's philosophy</h1>
+    <h1 class="heading-xl font-light leading-[1.2] mb-8 md:mb-16 lg:mb-24">Notre philosophie : l'indépendance au service de vos intérêts</h1>
     <Image
       src={aboutImage}
       alt="About Merly"
@@ -60,10 +60,10 @@ const whyMerlyPoints = [
       fetchpriority="high"
     />
     <p class="text-body-lg mb-8">
-      Merly is an investment fund that focuses on medium to long-term investments in equities and bonds. The fund builds diversified portfolios combining quality stocks and fixed-income securities to generate sustainable returns while managing risk. Merly leverages fundamental analysis and dynamic asset allocation to optimize performance across market cycles.
+      Merly est un cabinet de conseil en gestion de patrimoine indépendant. Nous accompagnons les particuliers et les entrepreneurs dans l'organisation, l'optimisation et la transmission de leur patrimoine. Notre approche : une analyse globale de votre situation, des recommandations objectives et un suivi personnalisé dans la durée.
     </p>
-    <a href="/about" class="btn-outline btn-icon md:w-fit md:flex md:gap-12 bg-(--color-bg)">
-      <span>See performance</span>
+    <a href="/contact" class="btn-outline btn-icon md:w-fit md:flex md:gap-12 bg-(--color-bg)">
+      <span>Prendre rendez-vous</span>
       <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
        <path d="M7.6416 7.36328L6.92578 7.36426L6.91797 1.83984C6.91765 1.60881 6.6357 1.48832 6.46973 1.6543L0.504883 7.61914L0 7.11816L5.96582 1.15234C6.13124 0.98632 6.00983 0.705733 5.77832 0.706055L0.238281 0.713867L0.237305 0.000976562L7.63086 0L7.6416 7.36328Z" fill="currentColor"/>
       </svg>
@@ -71,7 +71,7 @@ const whyMerlyPoints = [
   </section>
 
   <section class="pt-(--spacing-section) pb-(--spacing-section) px-(--spacing-container) max-w-(--max-width-site) mx-auto lg:px-0">
-    <h2 class="heading-lg mb-8 md:mb-12">Why Merly ?</h2>
+    <h2 class="heading-lg mb-8 md:mb-12">Pourquoi nous choisir ?</h2>
     <div class="bg-(--color-bg-section) rounded-[5px] p-6 md:p-16 lg:p-24">
       <div class="why-grid">
         {whyMerlyPoints.map((point, index) => (

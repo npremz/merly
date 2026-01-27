@@ -5,14 +5,14 @@ import withus02 from '../../assets/images/withus02.jpg';
 import withus03 from '../../assets/images/withus03.jpg';
 
 const items = [
-  { title: "First contact", description: "Get in touch with our team to discuss your investment goals and risk profile. We'll help you understand how our equity and bond portfolios can work for you.", image: withus01 },
-  { title: "Registration", description: "Complete your investor profile online with our secure KYC process. Choose your initial investment amount and preferred portfolio allocation between stocks and bonds.", image: withus02 },
-  { title: "Investment with Merly", description: "Your capital is deployed into our diversified portfolio. Track your performance through monthly reports and adjust your strategy as your goals evolve.", image: withus03 },
+  { title: "Premier rendez-vous", description: "Un échange gratuit et sans engagement pour comprendre votre situation, vos objectifs et vos préoccupations. Nous prenons le temps de vous écouter avant toute recommandation.", image: withus01 },
+  { title: "Bilan patrimonial", description: "Analyse complète de votre patrimoine : actifs financiers, immobilier, fiscalité, protection sociale. Nous identifions les opportunités d'optimisation et les risques à anticiper.", image: withus02 },
+  { title: "Accompagnement continu", description: "Mise en place des préconisations et suivi régulier. Points annuels, ajustements selon l'évolution de votre vie, disponibilité permanente pour vos questions.", image: withus03 },
 ];
 ---
 
 <section class="section">
-  <h2 class="heading-lg pb-6 mb-8 border-dashed-light lg:pb-12 lg:mb-12">How to invest with us</h2>
+  <h2 class="heading-lg pb-6 mb-8 border-dashed-light lg:pb-12 lg:mb-12">Notre méthode de travail</h2>
 
   <div class="flex flex-col">
     {items.map((item, i) => (
@@ -23,7 +23,7 @@ const items = [
             <h3 class="heading-md mb-(--spacing-md) lg:mb-12">{item.title}</h3>
             <p class="text-body mb-(--spacing-lg)">{item.description}</p>
           </div>
-          <a href="/register" class="btn-outline mb-(--spacing-lg) md:w-fit md:mb-0">Start registration now</a>
+          <a href="/contact" class="btn-outline mb-(--spacing-lg) md:w-fit md:mb-0">Prendre rendez-vous</a>
         </div>
         <Image
           src={item.image}
