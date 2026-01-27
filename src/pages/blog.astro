@@ -9,19 +9,19 @@ import blog04 from '../assets/images/blog04.jpg';
 import resultImg from '../assets/images/result.jpg';
 
 const blogArticles = [
-  { date: "30.12.23", title: "Performance de Décembre: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: blog01 },
-  { date: "07.01.24", title: "Performance de Janvier: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: blog02 },
-  { date: "14.01.24", title: "Finance Arbitraire: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: blog03 },
-  { date: "22.01.24", title: "Réforme de Wall Street: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: blog04 },
-  { date: "01.02.24", title: "Performance de Février: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: blog01 },
+  { date: "15.01.26", title: "Perspectives 2026 : Comment positionner son portefeuille face aux incertitudes économiques mondiales.", image: blog01 },
+  { date: "08.01.26", title: "Obligations vs Actions : L'importance d'une allocation équilibrée dans un contexte de taux fluctuants.", image: blog02 },
+  { date: "20.12.25", title: "ESG et Performance : Intégrer les critères durables sans sacrifier le rendement de votre portefeuille.", image: blog03 },
+  { date: "12.12.25", title: "Diversification Sectorielle : Pourquoi les valeurs défensives gardent leur place en 2026.", image: blog04 },
+  { date: "01.12.25", title: "Analyse Trimestrielle : Retour sur les performances du marché actions au T4 2025.", image: blog01 },
 ];
 
 const mensuelArticles = [
-  { date: "30.12.23", title: "Performance de Décembre: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: resultImg, featured: true },
-  { date: "07.01.24", title: "Performance de Janvier: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: resultImg, featured: true },
-  { date: "14.01.24", title: "Performance de Février: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: resultImg, featured: true },
-  { date: "22.01.24", title: "Performance de Mars: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: resultImg, featured: true },
-  { date: "01.02.24", title: "Performance de Décembre: Notre stratégie nous oblige à garder un rapport Gains/Pertes positif de 3.", image: resultImg, featured: true },
+  { date: "31.12.25", title: "Rapport de Décembre 2025 : Performance du portefeuille +0.8% avec une allocation 60/40 actions-obligations.", image: resultImg, featured: true },
+  { date: "30.11.25", title: "Rapport de Novembre 2025 : Légère correction sur les marchés, notre stratégie défensive limite les pertes.", image: resultImg, featured: true },
+  { date: "31.10.25", title: "Rapport d'Octobre 2025 : Rebond des valeurs technologiques, performance mensuelle de +1.2%.", image: resultImg, featured: true },
+  { date: "30.09.25", title: "Rapport de Septembre 2025 : Volatilité accrue, nous renforçons la part obligataire du portefeuille.", image: resultImg, featured: true },
+  { date: "31.08.25", title: "Rapport d'Août 2025 : Stabilité estivale, rendement de +0.5% sur un marché calme.", image: resultImg, featured: true },
 ];
 ---
 
@@ -63,7 +63,7 @@ const mensuelArticles = [
 
     <!-- Mensuel Result Section -->
     <section class="section !pr-0 pt-12 md:pt-16 pb-(--spacing-section)">
-      <h2 class="heading-lg mb-8 md:mb-10">Mensuel Result</h2>
+      <h2 class="heading-lg mb-8 md:mb-10">Monthly Performance Reports</h2>
 
       <div class="articles-scroll flex gap-6 overflow-x-auto pr-6 pb-4 lg:grid lg:grid-cols-4 lg:gap-8 lg:overflow-visible lg:pr-0">
         {mensuelArticles.map((article) => (

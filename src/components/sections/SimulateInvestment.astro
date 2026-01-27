@@ -1,6 +1,6 @@
 ---
 // Simulate Investment section
-const monthlyReturnRate = 0.0075; // 0.75% monthly return (approx 9% annual)
+const monthlyReturnRate = 0.0063; // 0.63% monthly return (approx 7.8% annual - historical equity/bond portfolio average)
 ---
 
 <section class="section flex flex-col gap-5">
@@ -15,7 +15,7 @@ const monthlyReturnRate = 0.0075; // 0.75% monthly return (approx 9% annual)
         </div>
         <div class="flex flex-col gap-2.5 md:gap-6">
           <span class="text-body">Total return</span>
-          <span id="display-return" class="heading-md text-xl md:text-[1.75rem]">9,05 %</span>
+          <span id="display-return" class="heading-md text-xl md:text-[1.75rem]">7,82 %</span>
         </div>
       </div>
 
@@ -99,7 +99,7 @@ const monthlyReturnRate = 0.0075; // 0.75% monthly return (approx 9% annual)
   const tooltipMonth = document.getElementById('tooltip-month');
   const tooltipValue = document.getElementById('tooltip-value');
 
-  const MONTHLY_RETURN_RATE = 0.0075;
+  const MONTHLY_RETURN_RATE = 0.0063;
 
   function calculateInvestmentData(principal: number, months: number): number[] {
     const data: number[] = [principal];
