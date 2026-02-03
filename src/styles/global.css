@@ -32,7 +32,7 @@
   --font-montreal: 'PP Neue Montreal', sans-serif;
 
   /* Layout */
-  --max-width-site: 1512px;
+  --max-width-site: 1650px;
 
   /* Spacing (mobile-first) */
   --spacing-section: 6.25rem;
@@ -78,7 +78,7 @@
 
     /* Typography - desktop */
     --text-heading-xl: 3.5rem;
-    --text-heading-lg: 1.625rem;
+    --text-heading-lg: 2.25rem;
     --text-heading-sm: 1.25rem;
     --text-body-lg: 2.25rem;
   }
@@ -94,18 +94,29 @@
     --spacing-sm: 0.75rem;
 
     /* Typography - desktop */
-    --text-heading-xl: 5rem;
-    --text-heading-lg: 2.25rem;
+    --text-heading-xl: 5.75rem;
+    --text-heading-lg: 2.875rem;
     --text-heading-md: 1.75rem;
-    --text-body-lg: 3.25rem;
+    --text-body-lg: 4.1875rem;
   }
 }
 
 /* Custom base styles */
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-(--color-bg) text-(--color-text) leading-relaxed overflow-x-hidden;
     font-family: var(--font-montreal);
+  }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
@@ -116,7 +127,7 @@
 @layer components {
   /* -------- Layout -------- */
   .section {
-    @apply pt-(--spacing-section) px-(--spacing-container) max-w-(--max-width-site) mx-auto lg:px-0 relative;
+    @apply pt-(--spacing-section) px-(--spacing-container) max-w-(--max-width-site) mx-auto lg:px-16 relative;
   }
 
   .section::before {
@@ -125,7 +136,7 @@
   }
 
   .section-dark {
-    @apply py-10 px-(--spacing-container) text-white max-w-(--max-width-site) mx-auto lg:px-0 relative;
+    @apply py-10 px-(--spacing-container) text-white max-w-(--max-width-site) mx-auto lg:px-16 relative;
   }
 
   .section-dark::before {
@@ -134,7 +145,7 @@
   }
 
   .section-primary {
-    @apply py-10 px-(--spacing-container) text-white md:py-16 lg:py-25 max-w-(--max-width-site) mx-auto lg:px-0 relative;
+    @apply py-10 px-(--spacing-container) text-white md:py-16 lg:py-25 max-w-(--max-width-site) mx-auto lg:px-16 relative;
   }
 
   .section-primary::before {
@@ -153,22 +164,22 @@
 
   /* -------- Typography -------- */
   .heading-xl {
-    @apply font-machina leading-tight;
+    @apply font-machina leading-tight tracking-[-0.025em];
     font-size: var(--text-heading-xl);
   }
 
   .heading-lg {
-    @apply font-machina leading-tight;
+    @apply font-machina leading-tight tracking-[-0.025em];
     font-size: var(--text-heading-lg);
   }
 
   .heading-md {
-    @apply font-machina leading-none;
+    @apply font-machina leading-none tracking-[-0.025em];
     font-size: var(--text-heading-md);
   }
 
   .heading-sm {
-    @apply font-machina leading-none;
+    @apply font-machina leading-none tracking-[-0.025em];
     font-size: var(--text-heading-sm);
   }
 
@@ -177,7 +188,7 @@
   }
 
   .text-body-lg {
-    @apply font-machina leading-[1.33];
+    @apply font-machina leading-[1.4] tracking-[-0.025em];
     font-size: var(--text-body-lg);
   }
 
@@ -191,19 +202,19 @@
 
   /* -------- Buttons -------- */
   .btn {
-    @apply block w-full py-4 px-5 rounded-[5px] text-center no-underline transition-colors;
+    @apply block w-full py-4 px-5 rounded-[5px] text-center no-underline transition-colors duration-[250ms];
   }
 
   .btn-outline {
-    @apply block w-full py-4 px-5 rounded-[5px] text-center no-underline transition-colors bg-transparent text-(--color-primary) border border-(--color-primary) hover:bg-(--color-primary-hover);
+    @apply block w-full py-4 px-[25px] rounded-[5px] text-center no-underline transition-all duration-[350ms] bg-transparent text-(--color-primary) border border-(--color-primary) hover:bg-(--color-primary) hover:text-white ;
   }
 
   .btn-solid {
-    @apply block w-full py-4 px-5 rounded-[5px] text-center no-underline transition-colors bg-(--color-primary) text-white border border-(--color-primary) hover:opacity-90;
+    @apply block w-full py-4 px-5 rounded-[5px] text-center no-underline transition-colors duration-[250ms] bg-(--color-primary) text-white border border-(--color-primary) hover:opacity-90;
   }
 
   .btn-white {
-    @apply block w-full py-4 px-5 rounded-[5px] text-center no-underline transition-colors bg-white text-(--color-primary) hover:bg-(--color-bg);
+    @apply block w-full py-4 px-5 rounded-[5px] text-center no-underline transition-all duration-[350ms] bg-white text-(--color-primary) border border-white hover:bg-transparent hover:text-white;
   }
 
   .btn-icon {
@@ -212,20 +223,20 @@
 
   /* -------- Cards -------- */
   .card {
-    @apply bg-(--color-bg-card) rounded-[5px] p-6 md:px-10 lg:px-16;
+    @apply bg-(--color-bg-card) rounded-[3px] p-6 md:px-10 lg:px-16;
   }
 
   .card-bordered {
-    @apply bg-(--color-bg-section) border border-(--color-border) rounded-[5px] p-6;
+    @apply bg-(--color-bg-section) border border-(--color-border) rounded-[3px] p-6;
   }
 
   /* -------- Form Inputs -------- */
   .input {
-    @apply py-4 px-8 rounded-[5px] text-base bg-(--color-bg-card) border-none focus:outline-2 focus:outline-(--color-primary) focus:-outline-offset-2;
+    @apply py-4 px-8 rounded-[3px] text-base bg-(--color-bg-card) border-none focus:outline-2 focus:outline-(--color-primary) focus:-outline-offset-2;
   }
 
   .input-dashed {
-    @apply py-4 px-8 rounded-[5px] text-base bg-(--color-bg-card) border-none focus:outline-2 focus:outline-(--color-primary) focus:-outline-offset-2;
+    @apply py-4 px-8 rounded-[3px] text-base bg-(--color-bg-card) border-none focus:outline-2 focus:outline-(--color-primary) focus:-outline-offset-2;
     background-image: linear-gradient(to right, var(--color-border) 50%, transparent 50%);
     background-position: bottom;
     background-size: 12px 1px;
