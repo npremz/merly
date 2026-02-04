@@ -163,6 +163,18 @@ const navLinks = [
     }
   });
 
+  // Close on click outside
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const isMenuOpen = mobileMenu?.getAttribute('aria-hidden') === 'false';
+    const isClickInsideMenu = mobileMenu?.contains(target);
+    const isClickOnBurger = burger?.contains(target);
+
+    if (isMenuOpen && !isClickInsideMenu && !isClickOnBurger) {
+      closeMenu();
+    }
+  });
+
   // Hide header on scroll down, show on scroll up
   let lastScrollY = window.scrollY;
 
