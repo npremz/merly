@@ -42,21 +42,7 @@ const navLinks = [
 </header>
 
 <!-- Mobile Menu Overlay -->
-<div id="mobile-nav" class="mobile-menu fixed top-0 left-0 right-0 h-[40vh] z-40 bg-white lg:hidden" aria-hidden="true">
-  <!-- Mobile Menu Header -->
-  <div class="flex items-center justify-end py-6 px-(--spacing-container)">
-    <button
-      class="mobile-menu-close w-11 h-11 flex items-center justify-center bg-transparent border-none cursor-pointer"
-      type="button"
-      aria-label="Fermer le menu"
-    >
-      <svg width="21" height="21" viewBox="0 0 21 21" fill="none" stroke="currentColor" stroke-width="1">
-        <line x1="0" y1="21" x2="21" y2="0" />
-        <line x1="0" y1="0" x2="21" y2="21" />
-      </svg>
-    </button>
-  </div>
-
+<div id="mobile-nav" class="mobile-menu fixed top-0 left-0 right-0 py-16 z-40 bg-white lg:hidden" aria-hidden="true">
   <!-- Mobile Navigation -->
   <nav class="flex flex-col items-end gap-2.5 px-(--spacing-container) mt-8">
     {navLinks.map((link, index) => (
