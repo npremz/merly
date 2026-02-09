@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import aboutImage from '../assets/images/about.jpg';
 import AnimatedBackground from '../components/ui/AnimatedBackground.astro';
 import aboutIcon01 from '../assets/icons/about_01.svg';
@@ -43,9 +43,11 @@ const whyMerlyPoints = [
     icon: aboutIcon06
   }
 ];
+
+const optimizedAbout = await getImage({ src: aboutImage, width: 1512, format: 'webp' });
 ---
 
-<Layout title="Le cabinet - Merly">
+<Layout title="Le cabinet - Merly" preloadImage={optimizedAbout.src}>
   <div class="relative">
     <AnimatedBackground />
     <section class="section section-bg-gray pt-16 md:pt-50 lg:pt-68 pb-(--spacing-section) text-left">
@@ -57,7 +59,9 @@ const whyMerlyPoints = [
       widths={[400, 800, 1200, 1512]}
       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1512px"
       loading="eager"
+      decoding="sync"
       fetchpriority="high"
+      transition:animate="none"
     />
     <p class="text-body-lg mb-16">
       Merly est un cabinet de conseil en gestion de patrimoine indépendant. Nous accompagnons les particuliers et les entrepreneurs dans l'organisation, l'optimisation et la transmission de leur patrimoine. Notre approche : une analyse globale de votre situation, des recommandations objectives et un suivi personnalisé dans la durée.
