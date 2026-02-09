@@ -1,13 +1,17 @@
 ---
+import { getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/sections/Hero.astro';
 import HowWeInvest from '../components/sections/HowWeInvest.astro';
 import WhatWeOffer from '../components/sections/WhatWeOffer.astro';
 import SimulateInvestment from '../components/sections/SimulateInvestment.astro';
 import WhatsNew from '../components/sections/WhatsNew.astro';
+import heroImage from '../assets/images/hero.jpg';
+
+const optimizedHero = await getImage({ src: heroImage, width: 1512, format: 'webp' });
 ---
 
-<Layout title="Merly">
+<Layout title="Merly" preloadImage={optimizedHero.src}>
   <Hero />
   <HowWeInvest />
   <WhatWeOffer />

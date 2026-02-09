@@ -7,9 +7,10 @@ import Footer from '../components/layout/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  preloadImage?: string;
 }
 
-const { title = 'Merly Patrimoine', description = 'Cabinet de conseil en gestion de patrimoine indépendant - Bilan patrimonial, optimisation fiscale, préparation retraite et transmission' } = Astro.props;
+const { title = 'Merly Patrimoine', description = 'Cabinet de conseil en gestion de patrimoine indépendant - Bilan patrimonial, optimisation fiscale, préparation retraite et transmission', preloadImage } = Astro.props;
 ---
 
 <html lang="fr">
@@ -24,6 +25,7 @@ const { title = 'Merly Patrimoine', description = 'Cabinet de conseil en gestion
     <link rel="preload" href="/fonts/PPNeueMachina-Light.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/PPNeueMontreal-Regular.woff2" as="font" type="font/woff2" crossorigin />
 
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} type="image/webp" />}
     <title>{title}</title>
     <ViewTransitions />
   </head>

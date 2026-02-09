@@ -14,7 +14,9 @@ import AnimatedBackground from '../ui/AnimatedBackground.astro';
     widths={[400, 800, 1200, 1512]}
     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1512px"
     loading="eager"
+    decoding="sync"
     fetchpriority="high"
+    transition:animate="none"
   />
   <p class="text-body-lg mb-16">
     Nous accompagnons les particuliers et les entrepreneurs dans la structuration et l'optimisation de leur patrimoine. Bilan patrimonial, stratégie fiscale, préparation de la retraite : un accompagnement sur-mesure, en toute indépendance.
