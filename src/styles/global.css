@@ -243,6 +243,27 @@
     background-repeat: repeat-x;
   }
 
+  select.input-dashed {
+    appearance: none;
+    padding-right: 3rem;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23333' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
+      linear-gradient(to right, var(--color-border) 50%, transparent 50%);
+    background-position: right 2rem center, bottom;
+    background-size: 12px 7px, 12px 1px;
+    background-repeat: no-repeat, repeat-x;
+  }
+
+  input[type="number"].input-dashed {
+    appearance: textfield;
+  }
+
+  input[type="number"].input-dashed::-webkit-inner-spin-button,
+  input[type="number"].input-dashed::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
   /* -------- Borders & Separators -------- */
   .border-dashed-light {
     @apply border-b border-dashed border-(--color-border);

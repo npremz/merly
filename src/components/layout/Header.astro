@@ -175,6 +175,22 @@ const navLinks = [
     }
   });
 
+  // Smooth scroll to #estimateur via Lenis when on homepage
+  document.querySelectorAll('a[href="/#estimateur"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (window.location.pathname === '/') {
+        e.preventDefault();
+        closeMenu();
+        const lenis = (window as any).__lenis;
+        if (lenis) {
+          lenis.scrollTo('#estimateur', { offset: -80 });
+        } else {
+          document.getElementById('estimateur')?.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
   // Hide header on scroll down, show on scroll up
   let lastScrollY = window.scrollY;
 

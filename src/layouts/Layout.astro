@@ -46,6 +46,7 @@ const { title = 'Merly Patrimoine', description = 'Cabinet de conseil en gestion
 
         if (!isMobile && !lenis) {
           lenis = new Lenis();
+          (window as any).__lenis = lenis;
 
           function raf(time: number) {
             lenis?.raf(time);
@@ -56,13 +57,25 @@ const { title = 'Merly Patrimoine', description = 'Cabinet de conseil en gestion
         }
       }
 
-      // Scroll to top on page navigation
+      // Scroll to top on page navigation (or to hash target)
       document.addEventListener('astro:page-load', () => {
-        window.scrollTo(0, 0);
-        if (lenis) {
-          lenis.scrollTo(0, { immediate: true });
+        const hash = window.location.hash;
+        if (hash) {
+          initLenis();
+          requestAnimationFrame(() => {
+            if (lenis) {
+              lenis.scrollTo(hash, { offset: -80, immediate: false });
+            } else {
+              document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' });
+            }
+          });
+        } else {
+          window.scrollTo(0, 0);
+          if (lenis) {
+            lenis.scrollTo(0, { immediate: true });
+          }
+          initLenis();
         }
-        initLenis();
       });
 
       // Initial load
