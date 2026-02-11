@@ -109,14 +109,6 @@
 </style>
 
 <script>
-  const tmiSelect = document.getElementById('tmi') as HTMLSelectElement;
-  const versementInput = document.getElementById('versement') as HTMLInputElement;
-  const displayEconomy = document.getElementById('display-economy');
-  const displayCost = document.getElementById('display-cost');
-  const displayTotal = document.getElementById('display-total');
-  const barCost = document.getElementById('bar-cost');
-  const barEconomy = document.getElementById('bar-economy');
-
   function formatCurrency(value: number): string {
     return new Intl.NumberFormat('fr-FR', {
       style: 'decimal',
@@ -125,27 +117,38 @@
     }).format(value) + ' €';
   }
 
-  function updateSimulation() {
-    const tmi = parseInt(tmiSelect.value) / 100;
-    const versement = parseFloat(versementInput.value) || 0;
+  document.addEventListener('astro:page-load', () => {
+    const tmiSelect = document.getElementById('tmi') as HTMLSelectElement;
+    const versementInput = document.getElementById('versement') as HTMLInputElement;
+    const displayEconomy = document.getElementById('display-economy');
+    const displayCost = document.getElementById('display-cost');
+    const displayTotal = document.getElementById('display-total');
+    const barCost = document.getElementById('bar-cost');
+    const barEconomy = document.getElementById('bar-economy');
 
-    const economy = Math.round(versement * tmi);
-    const cost = versement - economy;
+    if (!tmiSelect || !versementInput) return;
 
-    if (displayEconomy) displayEconomy.textContent = formatCurrency(economy);
-    if (displayCost) displayCost.textContent = formatCurrency(cost);
-    if (displayTotal) displayTotal.textContent = formatCurrency(versement);
+    function updateSimulation() {
+      const tmi = parseInt(tmiSelect.value) / 100;
+      const versement = parseFloat(versementInput.value) || 0;
 
-    // Update bars
-    const costPercent = versement > 0 ? (cost / versement) * 100 : 100;
-    const economyPercent = versement > 0 ? (economy / versement) * 100 : 0;
+      const economy = Math.round(versement * tmi);
+      const cost = versement - economy;
 
-    if (barCost) barCost.style.width = `${costPercent}%`;
-    if (barEconomy) barEconomy.style.width = `${economyPercent}%`;
-  }
+      if (displayEconomy) displayEconomy.textContent = formatCurrency(economy);
+      if (displayCost) displayCost.textContent = formatCurrency(cost);
+      if (displayTotal) displayTotal.textContent = formatCurrency(versement);
 
-  tmiSelect?.addEventListener('change', updateSimulation);
-  versementInput?.addEventListener('input', updateSimulation);
+      const costPercent = versement > 0 ? (cost / versement) * 100 : 100;
+      const economyPercent = versement > 0 ? (economy / versement) * 100 : 0;
 
-  updateSimulation();
+      if (barCost) barCost.style.width = `${costPercent}%`;
+      if (barEconomy) barEconomy.style.width = `${economyPercent}%`;
+    }
+
+    tmiSelect.addEventListener('change', updateSimulation);
+    versementInput.addEventListener('input', updateSimulation);
+
+    updateSimulation();
+  });
 </script>
