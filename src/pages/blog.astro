@@ -40,9 +40,19 @@ const guidesArticles = [
   <div class="bg-(--color-bg-section)">
     <!-- Blog & Actualités Section -->
     <section class="section !pr-0 pt-12 md:pt-16 lg:pt-20 pb-12 md:pb-16">
-      <h2 class="heading-lg mb-8 md:mb-10">Actualités patrimoniales</h2>
+      <div class="articles-header">
+        <h2 class="heading-lg">Actualités patrimoniales</h2>
+        <div class="scroll-arrows" aria-hidden="true">
+          <button class="scroll-arrow scroll-arrow--prev" data-dir="prev" aria-label="Défiler vers la gauche">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="scroll-arrow scroll-arrow--next" data-dir="next" aria-label="Défiler vers la droite">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
 
-      <div class="articles-scroll flex gap-6 overflow-x-auto pr-6 pb-4">
+      <div class="articles-scroll flex gap-6 overflow-x-auto pr-6 pb-4 mt-8 md:mt-10">
         {blogArticles.map((article) => (
           <article class="shrink-0 w-[280px] md:w-[310px]">
             <a href={`/blog/${article.slug}`}>
@@ -64,9 +74,19 @@ const guidesArticles = [
 
     <!-- Guides pratiques Section -->
     <section class="section !pr-0 pt-12 md:pt-16 pb-(--spacing-section)">
-      <h2 class="heading-lg mb-8 md:mb-10">Guides pratiques</h2>
+      <div class="articles-header">
+        <h2 class="heading-lg">Guides pratiques</h2>
+        <div class="scroll-arrows" aria-hidden="true">
+          <button class="scroll-arrow scroll-arrow--prev" data-dir="prev" aria-label="Défiler vers la gauche">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="scroll-arrow scroll-arrow--next" data-dir="next" aria-label="Défiler vers la droite">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
 
-      <div class="articles-scroll flex gap-6 overflow-x-auto pr-6 pb-4">
+      <div class="articles-scroll flex gap-6 overflow-x-auto pr-6 pb-4 mt-8 md:mt-10">
         {guidesArticles.map((article) => (
           <article class="shrink-0 w-[280px] md:w-[310px]">
             <a href={`/blog/${article.slug}`}>
@@ -89,22 +109,91 @@ const guidesArticles = [
 </Layout>
 
 <style>
+  .articles-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1.5rem;
+  }
+
+  .scroll-arrows {
+    display: none;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .scroll-arrows {
+      display: flex;
+    }
+  }
+
+  .scroll-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 5px;
+    border: 1px solid var(--color-primary);
+    background: transparent;
+    color: var(--color-primary);
+    cursor: pointer;
+    transition: all 0.35s;
+  }
+
+  .scroll-arrow:hover {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .scroll-arrow:disabled {
+    opacity: 0.3;
+    cursor: default;
+    background: transparent;
+    color: var(--color-primary);
+  }
+
   .articles-scroll {
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    scrollbar-width: none;
   }
 
   .articles-scroll::-webkit-scrollbar {
-    height: 4px;
-  }
-
-  .articles-scroll::-webkit-scrollbar-track {
-    background: #e8e8e8;
-    border-radius: 2px;
-  }
-
-  .articles-scroll::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 2px;
+    display: none;
   }
 </style>
+
+<script>
+  function initScrollArrows() {
+    document.querySelectorAll('.articles-header').forEach((header) => {
+      const section = header.parentElement;
+      if (!section) return;
+      const scroller = section.querySelector('.articles-scroll');
+      if (!scroller) return;
+
+      const prevBtn = header.querySelector('[data-dir="prev"]') as HTMLButtonElement;
+      const nextBtn = header.querySelector('[data-dir="next"]') as HTMLButtonElement;
+      if (!prevBtn || !nextBtn) return;
+
+      function updateButtons() {
+        if (!scroller) return;
+        prevBtn.disabled = scroller.scrollLeft <= 0;
+        nextBtn.disabled = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 1;
+      }
+
+      prevBtn.addEventListener('click', () => {
+        scroller.scrollBy({ left: -340, behavior: 'smooth' });
+      });
+
+      nextBtn.addEventListener('click', () => {
+        scroller.scrollBy({ left: 340, behavior: 'smooth' });
+      });
+
+      scroller.addEventListener('scroll', updateButtons, { passive: true });
+      updateButtons();
+    });
+  }
+
+  initScrollArrows();
+  document.addEventListener('astro:after-swap', initScrollArrows);
+</script>
