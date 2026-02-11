@@ -28,19 +28,19 @@ const { title, date, category, image, intro } = Astro.props;
           <span class="text-sm px-3 py-1 bg-(--color-bg-section) rounded-full">{category}</span>
         </div>
 
-        <h1 class="heading-xl font-light leading-[1.2] mb-8">{title}</h1>
+        <h1 class="text-body-lg font-light leading-[1.2] mb-8">{title}</h1>
 
         <div class="bg-(--color-bg-section) rounded-[5px] p-8 md:p-20 lg:p-32">
           <Image
             src={image}
             alt={title}
-            class="img-cover h-[357px] md:h-[575px] lg:h-[805px] mb-12"
+            class="img-cover h-[357px] md:h-[575px] lg:h-[805px] mb-8 md:mb-20 lg:mb-32"
             widths={[400, 800, 1200, 1512]}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1512px"
             loading="eager"
           />
-          {intro && <p class="heading-md leading-relaxed mb-12">{intro}</p>}
-          <div class="prose prose-lg">
+          {intro && <p class="heading-md leading-relaxed mb-12 lg:px-32">{intro}</p>}
+          <div class="prose prose-lg lg:px-32">
             <slot />
           </div>
         </div>
